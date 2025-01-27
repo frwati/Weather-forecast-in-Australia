@@ -92,12 +92,16 @@ def clean_data(df):
  
     # Filling missing values in specific columns
     columns_to_fillup = ['MinTemp', 'MaxTemp', 'Rainfall', 'WindGustSpeed', 'WindSpeed9am', 'WindSpeed3pm',
-                         'Humidity9am', 'Humidity3pm', 'Pressure9am', 'Pressure3pm', 'Temp9am', 'Temp3pm']
+                         'Humidity9am', 'Humidity3pm', 'Pressure9am', 'Pressure3pm', 'Temp9am', 'Temp3pm', 
+                         'Evaporation', 'Sunshine', 'Cloud9am', 'Cloud3pm']
     for column in columns_to_fillup:
-        df = fill_missing_temps(df, 'Date', column=column)
-
-    # Removing rows containing missing values in columns 'WindGustDir', 'WindDir9am', 'WindDir3pm'
-    df = df.dropna(subset=['WindGustDir', 'WindDir9am', 'WindDir3pm'])
+        if column in df.columns:
+            df = fill_missing_temps(df, 'Date', column=column)
+        else:
+            logging.info(f"Column '{column}' not found in DataFrame. Skipping.")
+            
+    # Removing rows containing missing values 
+    df = df.dropna()
 
     return df
 
