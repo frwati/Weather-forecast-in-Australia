@@ -51,16 +51,16 @@ def clean_data(df):
     - Encoding categorical data and adding time-based features.
     """
     # Removing columns with more than 30% missing values
-    threshold = 0.3
+    #threshold = 0.3
 
     # Calculate the proportion of missing values
-    missing_ratio = df.isnull().sum() / len(df)
+    #missing_ratio = df.isnull().sum() / len(df)
 
     # Identify columns with missing values above the threshold
-    columns_to_drop = missing_ratio[missing_ratio > threshold].index
+    #columns_to_drop = missing_ratio[missing_ratio > threshold].index
 
-    # Drop the identified columns
-    df = df.drop(columns=columns_to_drop)
+    # Drop the identified missing columns
+    df = df.drop(columns=['Evaporation', 'Sunshine', 'Cloud9am', 'Cloud3pm'])
     
     # Remove rows with no RainTomorrow data available and convert the str into int values
     df = df.dropna(subset=['RainTomorrow'])
