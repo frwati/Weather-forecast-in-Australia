@@ -4,14 +4,22 @@ import os
 import logging
 import joblib
 
-def save_preprocessors(scaler, le, scaler_path='preprocessing/scaler.pkl', le_path='preprocessing/le.pkl'):
+def save_preprocessors(scalers, label_encoders, scaler_dir='preprocessing/scalers', le_dir='preprocessing/label_encoders'):
     """
-    Save the scaler and label encoder to disk.
+    Save the scalers and label encoders to disk.
     """
-    joblib.dump(scaler, scaler_path)
-    joblib.dump(le, le_path)
-    logging.info("Scaler and label encoder saved successfully.")
-
+    os.makedirs(scaler_dir, exist_ok=True)
+    os.makedirs(le_dir, exist_ok=True)
+    
+    # Save each scaler
+    for column, scaler in scalers.items():
+        joblib.dump(scaler, os.path.join(scaler_dir, f"{column}_scaler.pkl"))
+    
+    # Save each label encoder
+    for column, le in label_encoders.items():
+        joblib.dump(le, os.path.join(le_dir, f"{column}_le.pkl"))
+    
+    logging.info("Scalers and label encoders saved successfully.")
 
 def normalize_data(input_dir, output_dir):
     """
@@ -45,28 +53,35 @@ def normalize_data(input_dir, output_dir):
                      'WindSpeed3pm', 'Humidity9am', 'Humidity3pm', 'Pressure9am',
                      'Pressure3pm', 'Temp9am', 'Temp3pm']
     
-    # Initialize scaler
-    scaler = StandardScaler()
+    # Initialize scalers dictionary
+    scalers = {}
     
-    # Fit the scaler on the training data and transform both train and test datasets
+    # Initialize label encoders dictionary
+    label_encoders = {}
+    
+    # Fit scaler for each column and store them
     for column in scale_columns:
         if column in X_train.columns and column in X_test.columns:
-            X_train[[column]] = scaler.fit_transform(X_train[[column]])
-            X_test[[column]] = scaler.transform(X_test[[column]])
+            scaler = StandardScaler()
+            X_train.loc[:, column] = scaler.fit_transform(X_train[[column]])
+            X_test.loc[:, column] = scaler.transform(X_test[[column]])
+            scalers[column] = scaler
         else:
             logging.info(f"Column '{column}' not found in DataFrame. Skipping.")
     
     # Columns for encoding
     encode_columns = ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm']
     
-    # Initialize label encoder
-    le = LabelEncoder()
-    
-    # Encode categorical columns
+    # Encode categorical columns and save each label encoder
     for column in encode_columns:
-        # Check for unseen categories in the test set
-        X_train[column] = le.fit_transform(X_train[column])
-        X_test[column] = le.transform(X_test[column])
+        if column in X_train.columns and column in X_test.columns:
+            le = LabelEncoder()
+            X_train[column] = le.fit_transform(X_train[column])
+            # For unseen categories in test, use .transform() safely or assign a default
+            X_test[column] = X_test[column].map(lambda x: le.transform([x])[0] if x in le.classes_ else -1)
+            label_encoders[column] = le
+        else:
+            logging.info(f"Column '{column}' not found in DataFrame. Skipping.")
     
     # Save the normalized datasets
     logging.info("Saving normalized datasets...")
@@ -75,9 +90,9 @@ def normalize_data(input_dir, output_dir):
     y_train.to_csv(os.path.join(output_dir, "y_train.csv"), index=False)
     y_test.to_csv(os.path.join(output_dir, "y_test.csv"), index=False)
     
-    # Save the scaler and label encoder
-    logging.info("Saving scaler and label encoder...")
-    save_preprocessors(scaler, le)
+    # Save the scalers and label encoders
+    logging.info("Saving scalers and label encoders...")
+    save_preprocessors(scalers, label_encoders)
     logging.info(f"Normalized datasets and preprocessors saved to {output_dir}")
 
 
