@@ -50,16 +50,7 @@ def clean_data(df):
     - Dropping columns with more than 30% missing values.
     - Encoding categorical data and adding time-based features.
     """
-    # Removing columns with more than 30% missing values
-    #threshold = 0.3
-
-    # Calculate the proportion of missing values
-    #missing_ratio = df.isnull().sum() / len(df)
-
-    # Identify columns with missing values above the threshold
-    #columns_to_drop = missing_ratio[missing_ratio > threshold].index
-
-    # Drop the identified missing columns
+    # Drop the identified columns
     df = df.drop(columns=['Evaporation', 'Sunshine', 'Cloud9am', 'Cloud3pm'])
     
     # Remove rows with no RainTomorrow data available and convert the str into int values
@@ -84,16 +75,13 @@ def clean_data(df):
     df['Day'] = df['Date'].dt.day
     df['DayOfWeek'] = df['Date'].dt.dayofweek
     
-    # Feature Engineering - Number of days since the start of the data
-    df['DaysSinceStart'] = (df['Date'] - df['Date'].min()).dt.days
-
     # Using "IsWeekend" to indicate if the day is a weekend (Saturday/Sunday)
     df['IsWeekend'] = df['DayOfWeek'].isin([5, 6]).astype(int)
  
     # Filling missing values in specific columns
     columns_to_fillup = ['MinTemp', 'MaxTemp', 'Rainfall', 'WindGustSpeed', 'WindSpeed9am', 'WindSpeed3pm',
                          'Humidity9am', 'Humidity3pm', 'Pressure9am', 'Pressure3pm', 'Temp9am', 'Temp3pm', 
-                         'Evaporation', 'Sunshine', 'Cloud9am', 'Cloud3pm']
+                         ]
     for column in columns_to_fillup:
         if column in df.columns:
             df = fill_missing_temps(df, 'Date', column=column)
