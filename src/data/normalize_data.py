@@ -2,6 +2,16 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import os
 import logging
+import joblib
+
+def save_preprocessors(scaler, le, scaler_path='preprocessing/scaler.pkl', le_path='preprocessing/le.pkl'):
+    """
+    Save the scaler and label encoder to disk.
+    """
+    joblib.dump(scaler, scaler_path)
+    joblib.dump(le, le_path)
+    logging.info("Scaler and label encoder saved successfully.")
+
 
 def normalize_data(input_dir, output_dir):
     """
@@ -33,8 +43,7 @@ def normalize_data(input_dir, output_dir):
     logging.info("Normalizing the datasets...")
     scale_columns = ['MinTemp', 'MaxTemp', 'Rainfall', 'WindGustSpeed', 'WindSpeed9am',
                      'WindSpeed3pm', 'Humidity9am', 'Humidity3pm', 'Pressure9am',
-                     'Pressure3pm', 'Temp9am', 'Temp3pm', 'Evaporation', 'Sunshine', 
-                     'Cloud9am', 'Cloud3pm']
+                     'Pressure3pm', 'Temp9am', 'Temp3pm']
     
     # Initialize scaler
     scaler = StandardScaler()
@@ -65,7 +74,11 @@ def normalize_data(input_dir, output_dir):
     X_test.to_csv(os.path.join(output_dir, "X_test_scaled.csv"), index=False)
     y_train.to_csv(os.path.join(output_dir, "y_train.csv"), index=False)
     y_test.to_csv(os.path.join(output_dir, "y_test.csv"), index=False)
-    logging.info(f"Normalized datasets saved to {output_dir}")
+    
+    # Save the scaler and label encoder
+    logging.info("Saving scaler and label encoder...")
+    save_preprocessors(scaler, le)
+    logging.info(f"Normalized datasets and preprocessors saved to {output_dir}")
 
 
 def main(input_dir="data/split_data", output_dir="data/normalized_data"):
