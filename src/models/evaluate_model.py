@@ -2,7 +2,7 @@ import pandas as pd
 import joblib
 import logging
 import os
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import accuracy_score, f1_score, mean_squared_error, r2_score
 import json
 
 
@@ -16,22 +16,26 @@ def evaluate_model(X_test, y_test, model):
         model (sklearn model): Trained model.
     
     Returns:
-        metrics (dict): Model evaluation metrics (MSE, R2).
+        metrics (dict): Model evaluation metrics (Accuracy, F1, MSE, R2).
         predictions (DataFrame): Model predictions on test set.
     """
     logging.info("Making predictions on the test set...")
     predictions = model.predict(X_test)
     
     # Calculate evaluation metrics
+    accuracy = accuracy_score(y_test, predictions)
+    f1 = f1_score(y_test, predictions, average='binary')  # Binary classification assumption
     mse = mean_squared_error(y_test, predictions)
     r2 = r2_score(y_test, predictions)
     
     metrics = {
+        "accuracy": accuracy,
+        "f1_score": f1,
         "mean_squared_error": mse,
         "r2_score": r2
     }
     
-    logging.info(f"Evaluation metrics calculated: MSE={mse}, R2={r2}")
+    logging.info(f"Evaluation metrics calculated: Accuracy={accuracy}, F1={f1}, MSE={mse}, R2={r2}")
     
     return metrics, predictions
 
