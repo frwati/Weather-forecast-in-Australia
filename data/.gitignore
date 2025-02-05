@@ -1,0 +1,8 @@
+/split_data/X_test.csv
+/split_data/X_train.csv
+/split_data/y_train.csv
+/split_data/y_test.csv
+/normalized_data/X_test_scaled.csv
+/normalized_data/X_train_scaled.csv
+/normalized_data/y_test.csv
+/normalized_data/y_train.csv
