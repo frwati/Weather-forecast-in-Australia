@@ -1,2 +1,3 @@
 /venv
-/clean_data.csv
+/data
+/models/saved_models/trained_model.pkl
