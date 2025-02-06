@@ -1,5 +1,5 @@
-service: "service:weather_service"
-description: "Random Forest Classifier Service for predicting weather in AUstralia"
+service: src/service.py
+description: "Random Forest Classifier Service for predicting weather in Australia"
 labels:
   owner: "datascientest_project"
   project: "weather_prediction"
