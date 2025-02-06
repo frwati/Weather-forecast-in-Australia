@@ -1,0 +1,22 @@
+service: src.service
+description: "Random Forest Classifier Service for predicting weather in Australia"
+labels:
+  owner: "datascientest_project"
+  project: "weather_prediction"
+
+include:
+  - src/
+  - data/
+  - preprocessing/
+
+python:
+  packages:
+    - numpy
+    - pandas
+    - scikit-learn
+    - bentoml
+    - pydantic
+    - requests
+    - pyjwt
+    - joblib
+    - starlette
