@@ -1,8 +1,44 @@
-from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import pandas as pd
 import numpy as np
+import bentoml
+import bentoml.io import NumpyNdarray, JSON
+from starlette.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
+import jwt
+from datetime import datetime, timedelta
+
+# Secret key and algorithm for JWT authentication
+JWT_SECRET_KEY = "weather-report"
+JWT_ALGORITHM = "HS256"
+
+# User credentials for authentication
+USERS = {
+    "user123" : "password123",
+    "user456" : "password456"
+}
+
+class JWTAuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        if request.url.path == "/predict":
+            token = request.headers.get("Authorization")
+            if not token:
+                return JSONResponse(status_code=401, content={"detail": "Missing authentication token"})
+            
+            try:
+                token = token.split()[1]
+                payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+            except jwt.ExpiredSignatureError:
+                return JSONResponse(status_code=401, content={"detail": "Token has expired"})
+            except jwt.InvalidTokenError:
+                return JSONResponse(status_code=401, content={"detail": "Invalid token"})
+            
+            request.state.user = payload.get("sub")
+        
+        response = await call_next(request)
+        return response
+
 
 # Load the saved scalers and label encoders
 scalers = {}
@@ -20,11 +56,9 @@ encode_columns = ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm']
 for column in encode_columns:
     label_encoders[column] = joblib.load(f"preprocessing/label_encoders/{column}_le.pkl")
 
-# Define a FastAPI app
-app = FastAPI()
 
 # Define input model for prediction
-class WeatherData(BaseModel):
+class InputModel(BaseModel):
     Date: str
     Location: str
     MinTemp: float
@@ -45,12 +79,12 @@ class WeatherData(BaseModel):
     RainToday: str
 
 # Preprocessing function for incoming data
-def preprocess_input_data(weather_data):
+def preprocess_input_data(input_model:InputModel):
     """
     Preprocesses the incoming weather data before feeding it to the model.
     """
     # Convert input data to DataFrame
-    df = pd.DataFrame([weather_data.dict()])
+    df = pd.DataFrame([input_model.dict()])
     
     # Convert 'RainToday' to number (binary: 0 for 'No', 1 for 'Yes')
     df['RainToday'] = df['RainToday'].map({'No': 0, 'Yes': 1})
@@ -80,30 +114,70 @@ def preprocess_input_data(weather_data):
 
     return df
 
-@app.post("/predict")
-async def predict(weather_data: WeatherData):
+weather_rf_runner = bentoml.sklearn.get("trained_model:latest").to_runner
+
+rf_service = bentoml.Service("rf_clf_service", runners=[weather_rf_runner])
+
+rf_service.add_asgi_middleware(JWTAuthMiddleware)
+
+# Create an API endpoint for the service
+@rf_service.api(input=JSON(), output=JSON())
+def login(credentials: dict) -> dict:
+    username = credentials.get("username")
+    password = credentials.get("password")
+    
+    if username in USERS and USERS[username] == password:
+        token = create_jwt_token(username)
+        return {"token" : token}
+    else:
+        return JSONResponse(status_code=401, content={"detail": "Invalid credentials"})
+    
+# Create an API endpoint for the service
+@rf_service.api(
+    input=JSON(pydantic_model=InputModel),
+    output=JSON(),
+    route="/predict"
+)
+
+async def classify(input_data: InputModel, ctx: bentoml.Context) -> dict:
+       
     """
     Predict whether it will rain tomorrow based on the input weather data.
     """
-    try:
-        # Preprocess the incoming weather data
-        preprocessed_data = preprocess_input_data(weather_data)
-
-        # Load your trained model here (assuming it's saved as 'model.pkl')
-        model = joblib.load('models/trained_model.pkl')
-
-        # Make prediction
-        prediction = model.predict(preprocessed_data)
+    # Preprocess the incoming weather data
+    preprocessed_data = preprocess_input_data(input_data)
         
-        # Map prediction to 'Yes' or 'No'
-        result = "Yes" if prediction[0] == 1 else "No"
+    # Convert the input data to a numpy array
+    #input_series = np.array([preprocessed_data.Date, preprocessed_data.Location, preprocessed_data.MinTemp,
+                             #preprocessed_data.MaxTemp, preprocessed_data.Rainfall, preprocessed_data.WindGustDir,                    
+                             #preprocessed_data.WindGustSpeed, preprocessed_data.WindDir9am, preprocessed_data.WindDir3pm,
+                             #preprocessed_data.WindSpeed9am, preprocessed_data.WindSpeed3pm, preprocessed_data.Humidity9am,
+                             #preprocessed_data.Humidity3pm, preprocessed_data.Pressure9am, preprocessed_data.Pressure3pm,
+                             #preprocessed_data.Temp9am, preprocessed_data.Temp3pm, preprocessed_data.RainToday])
+
+    #result = await weather_rf_runner.predict.async_run(input_series.reshape(1, -1))
+    
+    # Convert the input data to a numpy array
+    input_series = preprocessed_data.values
+    
+    # Model prediction
+    result = await weather_rf_runner.predict.async_run(input_series.reshape(1, -1))
         
-        return {"RainTomorrow": result}
+    user = ctx.request.state.user if hasattr(ctx.request, 'user') else None
+        
+    return {
+        "prediction": result.tolist(),
+        "user": user
+    }
+    
+# Function to create a JWT token
+def create_jwt_token(user_id: str):
+    expiration = datetime.utcnow() + timedelta(hours=1)
+    payload = {
+        "sub": user_id,
+        "exp": expiration
+    }
+    token = jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    return token
 
-    except Exception as e:
-        print(f"Error during prediction: {e}")  
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
-@app.get("/")
-def root():
-    return {"message": "Welcome to the Weather Prediction API!"}
