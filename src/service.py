@@ -9,6 +9,7 @@ from starlette.requests import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 import jwt
 from datetime import datetime, timedelta
+import os
 
 # Secret key and algorithm for JWT authentication
 JWT_SECRET_KEY = "weather-report"
@@ -45,17 +46,22 @@ class JWTAuthMiddleware(BaseHTTPMiddleware):
 scalers = {}
 label_encoders = {}
 
+# Define the base directory for loading the preprocessing files (you can modify this as needed)
+preprocessing_dir = "preprocessing"
+
 # Load the scaler for each numerical column
 scale_columns = ['MinTemp', 'MaxTemp', 'Rainfall', 'WindGustSpeed', 'WindSpeed9am',
                  'WindSpeed3pm', 'Humidity9am', 'Humidity3pm', 'Pressure9am',
                  'Pressure3pm', 'Temp9am', 'Temp3pm']
 for column in scale_columns:
-    scalers[column] = joblib.load(f"preprocessing/scalers/{column}_scaler.pkl")
+    scaler_path = os.path.join(preprocessing_dir, 'scalers', f"{column}_scaler.pkl")
+    scalers[column] = joblib.load(scaler_path)
 
 # Load the label encoder for each categorical column
 encode_columns = ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm']
 for column in encode_columns:
-    label_encoders[column] = joblib.load(f"preprocessing/label_encoders/{column}_le.pkl")
+    encoder_path = os.path.join(preprocessing_dir, 'label_encoders', f"{column}_le.pkl")
+    label_encoders[column] = joblib.load(encoder_path)
 
 
 # Define input model for prediction
