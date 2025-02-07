@@ -4,6 +4,7 @@ import logging
 import os
 from sklearn.metrics import accuracy_score, f1_score, mean_squared_error, r2_score
 import json
+import mlflow
 
 
 def evaluate_model(X_test, y_test, model):
@@ -36,6 +37,12 @@ def evaluate_model(X_test, y_test, model):
     }
     
     logging.info(f"Evaluation metrics calculated: Accuracy={accuracy}, F1={f1}, MSE={mse}, R2={r2}")
+    
+    # Log metrics with MLflow
+    with mlflow.start_run():
+        mlflow.log_params({"model_type": "RandomForest"})
+        mlflow.log_metrics(metrics)
+        logging.info(f"Logged metrics to MLflow: {metrics}")
     
     return metrics, predictions
 
