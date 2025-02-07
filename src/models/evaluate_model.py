@@ -39,6 +39,7 @@ def evaluate_model(X_test, y_test, model):
     logging.info(f"Evaluation metrics calculated: Accuracy={accuracy}, F1={f1}, MSE={mse}, R2={r2}")
     
     # Log metrics with MLflow
+    mlflow.set_experiment("Weather_prediction")
     with mlflow.start_run():
         mlflow.log_params({"model_type": "RandomForest"})
         mlflow.log_metrics(metrics)
