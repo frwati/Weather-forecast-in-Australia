@@ -39,10 +39,6 @@ def save_trained_model(model, output_dir="models"):
     """
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
-
-    logging.info(f"Saving the trained model to model...")
-    bentoml_model = bentoml.sklearn.save_model("weather_rf_model", model)
-    logging.info("Model saved successfully using BentoML.")
     
     # Save model locally for DVC tracking
     model_path = os.path.join(output_dir, "trained_model.pkl")
