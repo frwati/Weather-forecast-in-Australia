@@ -75,7 +75,7 @@ def save_predictions(predictions, filename="metrics/predictions.csv"):
         logging.error(f"Failed to save predictions: {e}")
 
 
-def main(input_dir="../../data/normalized_data", output_dir="../../metrics", model_dir="../../models/saved_models"):
+def main(input_dir="data/normalized_data", output_dir="metrics", model_dir="models/saved_models"):
     """
     Main function to evaluate a trained model and save metrics and predictions.
     

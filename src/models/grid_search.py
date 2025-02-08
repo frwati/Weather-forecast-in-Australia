@@ -55,7 +55,7 @@ def grid_search(X_train, y_train):
     return best_params
 
 
-def save_best_params(best_params, filename="models/best_params.pkl"):
+def save_best_params(best_params, filename="models/best_parameters/best_params.pkl"):
     """
     Save the best hyperparameters to a .pkl file.
     
@@ -72,7 +72,7 @@ def save_best_params(best_params, filename="models/best_params.pkl"):
     logging.info("Best parameters saved successfully.")
 
 
-def main(input_dir="../../data/normalized_data/", output_dir="../../models/best_parameters"):
+def main(input_dir="data/normalized_data/", output_dir="models/best_parameters"):
     """
     Main function to perform hyperparameter tuning and save the best parameters.
     

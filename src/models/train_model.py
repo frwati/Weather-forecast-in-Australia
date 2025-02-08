@@ -45,7 +45,7 @@ def save_trained_model(model, filename="../../models/saved_models/trained_model.
     logging.info("Model saved successfully.")
 
 
-def main(input_dir="../../data/normalized_data", output_dir_save="../../models/saved_models" ,input_dir_grid="../../models/best_parameters"):
+def main(input_dir="data/normalized_data", output_dir_save="models/saved_models" ,input_dir_grid="models/best_parameters"):
     """
     Main function to train and save a RandomForestClassifier model.
 
