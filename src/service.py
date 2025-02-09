@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-import numpy as np
 import bentoml
 from bentoml.io import JSON 
 from starlette.responses import JSONResponse
@@ -137,7 +136,7 @@ def login(credentials: dict) -> dict:
         token = create_jwt_token(username)
         return {"token": token}
     else:
-        return JSONResponse(status_code=401, content={"detail": "Invalid credentials"})
+        return {"detail": "Invalid credentials"}
     
 # Create an API endpoint for the service
 @weather_service.api(
