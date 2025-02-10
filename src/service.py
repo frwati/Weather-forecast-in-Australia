@@ -1,13 +1,14 @@
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-import numpy as np
 import bentoml
-import bentoml.io import NumpyNdarray, JSON
+from bentoml.io import JSON 
 from starlette.responses import JSONResponse
+from starlette.requests import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 import jwt
 from datetime import datetime, timedelta
+import os
 
 # Secret key and algorithm for JWT authentication
 JWT_SECRET_KEY = "weather-report"
@@ -21,7 +22,7 @@ USERS = {
 
 class JWTAuthMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
-        if request.url.path == "/predict":
+        if request.url.path == "/predict-weather":
             token = request.headers.get("Authorization")
             if not token:
                 return JSONResponse(status_code=401, content={"detail": "Missing authentication token"})
@@ -32,7 +33,7 @@ class JWTAuthMiddleware(BaseHTTPMiddleware):
             except jwt.ExpiredSignatureError:
                 return JSONResponse(status_code=401, content={"detail": "Token has expired"})
             except jwt.InvalidTokenError:
-                return JSONResponse(status_code=401, content={"detail": "Invalid token"})
+                return JSONResponse(status_code=401, content={"detail": "Invalid Token"})
             
             request.state.user = payload.get("sub")
         
@@ -44,17 +45,22 @@ class JWTAuthMiddleware(BaseHTTPMiddleware):
 scalers = {}
 label_encoders = {}
 
+# Define the base directory for loading the preprocessing files (you can modify this as needed)
+preprocessing_dir = "preprocessing"
+
 # Load the scaler for each numerical column
 scale_columns = ['MinTemp', 'MaxTemp', 'Rainfall', 'WindGustSpeed', 'WindSpeed9am',
                  'WindSpeed3pm', 'Humidity9am', 'Humidity3pm', 'Pressure9am',
                  'Pressure3pm', 'Temp9am', 'Temp3pm']
 for column in scale_columns:
-    scalers[column] = joblib.load(f"preprocessing/scalers/{column}_scaler.pkl")
+    scaler_path = os.path.join(preprocessing_dir, 'scalers', f"{column}_scaler.pkl")
+    scalers[column] = joblib.load(scaler_path)
 
 # Load the label encoder for each categorical column
 encode_columns = ['Location', 'WindGustDir', 'WindDir9am', 'WindDir3pm']
 for column in encode_columns:
-    label_encoders[column] = joblib.load(f"preprocessing/label_encoders/{column}_le.pkl")
+    encoder_path = os.path.join(preprocessing_dir, 'label_encoders', f"{column}_le.pkl")
+    label_encoders[column] = joblib.load(encoder_path)
 
 
 # Define input model for prediction
@@ -114,64 +120,52 @@ def preprocess_input_data(input_model:InputModel):
 
     return df
 
-weather_rf_runner = bentoml.sklearn.get("trained_model:latest").to_runner
+weather_rf_runner = bentoml.sklearn.get("weather_rf_model:latest").to_runner()
 
-rf_service = bentoml.Service("rf_clf_service", runners=[weather_rf_runner])
+weather_service = bentoml.Service("weather_service", runners=[weather_rf_runner])
 
-rf_service.add_asgi_middleware(JWTAuthMiddleware)
+weather_service.add_asgi_middleware(JWTAuthMiddleware)
 
 # Create an API endpoint for the service
-@rf_service.api(input=JSON(), output=JSON())
+@weather_service.api(input=JSON(), output=JSON(), route="/login")
 def login(credentials: dict) -> dict:
     username = credentials.get("username")
     password = credentials.get("password")
     
     if username in USERS and USERS[username] == password:
         token = create_jwt_token(username)
-        return {"token" : token}
+        return {"token": token}
     else:
-        return JSONResponse(status_code=401, content={"detail": "Invalid credentials"})
+        return {"detail": "Invalid credentials"}
     
 # Create an API endpoint for the service
-@rf_service.api(
-    input=JSON(pydantic_model=InputModel),
+@weather_service.api(
+    input=JSON(pydantic_model=InputModel), 
     output=JSON(),
-    route="/predict"
-)
+    route="/predict-weather")
 
 async def classify(input_data: InputModel, ctx: bentoml.Context) -> dict:
-       
     """
     Predict whether it will rain tomorrow based on the input weather data.
     """
-    # Preprocess the incoming weather data
+    request = ctx.request
+    user = request.state.user if hasattr(request.state, 'user') else None
+    
     preprocessed_data = preprocess_input_data(input_data)
-        
-    # Convert the input data to a numpy array
-    #input_series = np.array([preprocessed_data.Date, preprocessed_data.Location, preprocessed_data.MinTemp,
-                             #preprocessed_data.MaxTemp, preprocessed_data.Rainfall, preprocessed_data.WindGustDir,                    
-                             #preprocessed_data.WindGustSpeed, preprocessed_data.WindDir9am, preprocessed_data.WindDir3pm,
-                             #preprocessed_data.WindSpeed9am, preprocessed_data.WindSpeed3pm, preprocessed_data.Humidity9am,
-                             #preprocessed_data.Humidity3pm, preprocessed_data.Pressure9am, preprocessed_data.Pressure3pm,
-                             #preprocessed_data.Temp9am, preprocessed_data.Temp3pm, preprocessed_data.RainToday])
+           
+    # Convert the preprocessed data to a NumPy array (model typically accepts this format)
+    input_array = preprocessed_data.values
 
-    #result = await weather_rf_runner.predict.async_run(input_series.reshape(1, -1))
+    # Run the model to get a prediction
+    result = await weather_rf_runner.predict.async_run(input_array.reshape(1, -1))
     
-    # Convert the input data to a numpy array
-    input_series = preprocessed_data.values
-    
-    # Model prediction
-    result = await weather_rf_runner.predict.async_run(input_series.reshape(1, -1))
-        
-    user = ctx.request.state.user if hasattr(ctx.request, 'user') else None
-        
     return {
-        "prediction": result.tolist(),
-        "user": user
+        "prediction": result.tolist()
     }
     
 # Function to create a JWT token
 def create_jwt_token(user_id: str):
+    """Generate a JWT token for authentication."""
     expiration = datetime.utcnow() + timedelta(hours=1)
     payload = {
         "sub": user_id,

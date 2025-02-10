@@ -1,0 +1,24 @@
+service: "src.service:weather_service"  
+description: "Weather Prediction Service using Random Forest Classifier"
+labels:
+  owner: "weather"
+  project: "weather_prediction"
+
+docker:
+  dockerfile_template: "./Dockerfile.template"
+  base_image: python:3.8-slim
+
+include:
+  - src/
+  - data/
+  - preprocessing/  
+
+python:
+  packages:
+    - numpy
+    - pandas
+    - scikit-learn
+    - bentoml
+    - pydantic
+    - requests
+    - pyjwt

@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 import os
 import logging
 import joblib
+import bentoml
 
 
 def train_model(X_train, y_train, best_params=None):
@@ -29,20 +30,20 @@ def train_model(X_train, y_train, best_params=None):
     return model
 
 
-def save_trained_model(model, filename="models/trained_model.pkl"):
+def save_trained_model(model, output_dir="models"):
     """
-    Saves the trained model to a specified file.
+    Saves the trained model to a specified file using BentoML.
 
     Args:
         model (RandomForestClassifier): Trained model.
-        filename (str, optional): Path to save the model. Defaults to "models/trained_model.pkl".
     """
     # Ensure the output directory exists
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-
-    logging.info(f"Saving the trained model to {filename}...")
-    joblib.dump(model, filename)
-    logging.info("Model saved successfully.")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Save model locally for DVC tracking
+    model_path = os.path.join(output_dir, "trained_model.pkl")
+    joblib.dump(model, model_path)
+    logging.info(f"Model saved locally at {model_path}")
 
 
 def main(input_dir="data/normalized_data", output_dir="models"):
@@ -74,8 +75,8 @@ def main(input_dir="data/normalized_data", output_dir="models"):
     # Train the model using the best parameters
     model = train_model(X_train, y_train, best_params=best_params)
 
-    # Save the trained model
-    save_trained_model(model, os.path.join(output_dir, "trained_model.pkl"))
+    # Save the model in BentoML & DVC
+    save_trained_model(model, output_dir)
 
 
 if __name__ == "__main__":
