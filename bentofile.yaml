@@ -4,6 +4,10 @@ labels:
   owner: "weather"
   project: "weather_prediction"
 
+docker:
+  dockerfile_template: "./Dockerfile.template"
+  base_image: python:3.8-slim
+
 include:
   - src/
   - data/
