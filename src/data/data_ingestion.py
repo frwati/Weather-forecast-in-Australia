@@ -43,31 +43,25 @@ def download_and_process_data(dataset_name, raw_data_folder):
                 break  # Stop once we find the first CSV file
         if csv_file:
             break
-
-    if csv_file:
-        # Define the destination file path
-        destination_file_path = os.path.join(raw_data_folder, "raw.csv")
-
-        # If raw.csv exists, remove it before copying the new file
-        if os.path.exists(destination_file_path):
-            logging.info("Replacing existing raw.csv with the new file.")
-            os.remove(destination_file_path)
-
-        # Copy the CSV file and rename it to raw.csv
-        try:
-            shutil.copy(csv_file, destination_file_path)
-            logging.info(f"Copied {csv_file} to {destination_file_path}")
-        except Exception as e:
-            logging.error(f"Error copying file: {e}")
-            raise e
-    else:
+    
+    if not csv_file:
         logging.error("No CSV file found in the downloaded dataset.")
-        raise FileNotFoundError("No CSV file found in the downloaded dataset.")
-
-    # Print final path where the dataset is stored
-    logging.info(f"Dataset is now stored in: {destination_file_path}")
-    return destination_file_path
-
+        raise FileNotFoundError("No CSV file found in the dataset.")
+    
+    #Save the latest dataset as 'current.csv'
+    current_file_path = os.path.join(raw_data_folder, "current.csv")
+    shutil.copy(csv_file, current_file_path)
+    logging.info(f"Copied {csv_file} to {current_file_path}")
+    
+    # If 'reference.csv' does not exist, save the first data as reference
+    reference_file_path = os.path.join(raw_data_folder, "reference.csv")
+    if not os.path.exists(reference_file_path):
+        shutil.copy(csv_file, reference_file_path)
+        logging.info(f"Reference dataset created at:{reference_file_path}")
+    else:
+        logging.info(f"Reference dataset already exists at: {reference_file_path}")
+        
+    return reference_file_path, current_file_path
 
 def main():
     # Define absolute path for project directory
@@ -77,7 +71,8 @@ def main():
     dataset_name = "jsphyg/weather-dataset-rattle-package"  # Modify as needed
 
     try:
-        download_and_process_data(dataset_name, raw_data_folder)
+        ref_path, cur_path = download_and_process_data(dataset_name, raw_data_folder)
+        logging.info(f"Data ingestion complete. Reference: {ref_path}, Current: {cur_path}")
     except Exception as e:
         logging.error(f"Data ingestion failed: {e}")
         exit(1)
