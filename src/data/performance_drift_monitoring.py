@@ -7,6 +7,7 @@ import numpy as np
 import json
 from evidently.report import Report
 from evidently.metric_preset import ClassificationPreset
+from evidently.pipeline.column_mapping import ColumnMapping
 
 
 # Define constants
@@ -139,7 +140,6 @@ def preprocess_data(input_file, scalers, label_encoders):
     y = df['RainTomorrow']
     return X, y
 
-
     
 def main():
     # Paths
@@ -160,52 +160,91 @@ def main():
     model = joblib.load(model_path)  # Load the model 
     #model = bentoml.sklearn.load_model("weather_rf_model:latest")
     
-    
-    y_current['predictions'] = model.predict(X_current)
-    y_reference['predictions'] = model.predict(X_reference)
+    # Make predictions and add it to the X_current and X_reference
+    X_current['prediction'] = model.predict(X_current)
+    X_reference['prediction'] = model.predict(X_reference)
+
+    # Add target variable to X_current and X_reference
+    X_current['target'] = y_current  
+    X_reference['target'] = y_reference
+
+    # Define column mapping
+    column_mapping = ColumnMapping()
+    column_mapping.target = "target"
+    column_mapping.prediction = "prediction"
     
     classification_report = Report(metrics=[ClassificationPreset()])
-    classification_report.run(reference_data=y_reference, current_data=y_current)
-    
+    classification_report.run(reference_data=X_reference, current_data=X_current, column_mapping=column_mapping)
+
+       
      # Extract the classification metrics from the report
-    metrics = classification_report.get_metrics()
-    accuracy = metrics['accuracy']
-    f1_score = metrics['f1_score']
-    precision = metrics['precision']
-    recall = metrics['recall']
+    metrics = classification_report.as_dict()
+
+    # Iterate through the list of metrics to find 'ClassificationQualityMetric'
+    classification_quality_metric = None
+    for metric in metrics['metrics']:
+        if metric['metric'] == 'ClassificationQualityMetric':
+            classification_quality_metric = metric['result']
+            break
+
+    if classification_quality_metric is not None:
+        current_metrics = classification_quality_metric['current']
+        reference_metrics = classification_quality_metric['reference']
+
+        # Now safely access the classification metrics of current dataset
+        accuracy = current_metrics.get('accuracy', None)
+        f1_score = current_metrics.get('f1', None)
+        precision = current_metrics.get('precision', None)
+        recall = current_metrics.get('recall', None)
+
+         # Print the extracted metrics
+        print(f"Accuracy: {accuracy}")
+        print(f"F1 Score: {f1_score}")
+        print(f"Precision: {precision}")
+        print(f"Recall: {recall}")
+
+        # Define thresholds for retraining (set as needed)
+        THRESHOLDS = {
+            "accuracy": 0.02,  # Retrain if Accuracy drops more than 0.02
+            "f1_score": 0.02,  # Retrain if F1 score drops more than 0.02
+            "precision": 0.02,  # Retrain if Precision drops more than 0.02
+            "recall": 0.02,  # Retrain if Recall drops more than 0.02
+        }
+
+        # Compute performance drift based on the metrics
+        performance_drop = {
+            "accuracy": abs(accuracy - reference_metrics['accuracy']),
+            "f1_score": abs(f1_score - reference_metrics['f1']),
+            "precision": abs(precision - reference_metrics['precision']),
+            "recall": abs(recall - reference_metrics['recall']),
+        }
+
+        # Print comparison logs
+        print("\n **Performance Drift Comparison:**")
+        for metric, drop in performance_drop.items():
+            # Use .get() method to avoid KeyError if metric is missing
+            previous_value = reference_metrics.get(metric, None)
+            current_value = current_metrics.get(metric, None)
     
-    # Define thresholds for retraining (set as needed)
-    THRESHOLDS = {
-        "accuracy": 0.02,  # Retrain if Accuracy drops more than 0.02
-        "f1_score": 0.02,  # Retrain if F1 score drops more than 0.02
-        "precision": 0.02,  # Retrain if Precision drops more than 0.02
-        "recall": 0.02,  # Retrain if Recall drops more than 0.02
-    }
-    
-    # Compute performance drift based on the metrics
-    performance_drop = {
-        "accuracy": abs(accuracy - metrics['reference']['accuracy']),
-        "f1_score": abs(f1_score - metrics['reference']['f1_score']),
-        "precision": abs(precision - metrics['reference']['precision']),
-        "recall": abs(recall - metrics['reference']['recall']),
-    }
+        if previous_value is not None and current_value is not None:
+            print(f" {metric}: Previous = {previous_value:.4f}, Current = {current_value:.4f}, Drop = {drop:.4f}")
+        else:
+            print(f" {metric}: Missing in either reference or current metrics.")
+        
 
-    # Print comparison logs
-    print("\n📊 **Performance Drift Comparison:**")
-    for metric, drop in performance_drop.items():
-        print(f"🔹 {metric}: Previous = {metrics['reference'][metric]:.4f}, Current = {locals()[metric]:.4f}, Drop = {drop:.4f}")
+        # Check if retraining is needed
+        retrain_needed = any(drop > THRESHOLDS[metric] for metric, drop in performance_drop.items())
 
-    # Check if retraining is needed
-    retrain_needed = any(drop > THRESHOLDS[metric] for metric, drop in performance_drop.items())
+        if retrain_needed:
+            print("\n**Performance Drift Detected! Retraining Required.**")
+        else:
+            print("\n**No Significant Performance Drift. Model is stable.**")
 
-    if retrain_needed:
-        print("\n**Performance Drift Detected! Retraining Required.**")
+        return retrain_needed
     else:
-        print("\n**No Significant Performance Drift. Model is stable.**")
-
-    # Exit code signals if retraining is needed
-    exit(1 if retrain_needed else 0)
-
+        print("Error: 'ClassificationQualityMetric' not found in metrics")
 
 if __name__ == "__main__":
-    main()
+    retrain_needed = main()
+    exit(1 if retrain_needed else 0)
+
