@@ -69,21 +69,40 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
         logging.error(f"Error during drift analysis: {e}")
         return
 
+def should_retrain(drift_score, drift_threshold=0.5):
+    """
+    Decide whether retraining is needed based on the drift score.
+    Args:
+        drift_score (float): The drift score calculated from the data drift report
+        drift_threshold (float): The threshold beyond which retraining is triggered
+    Returns:
+        bool: True if retraining is needed, False otherwise
+    """
+    if drift_score is not None:
+        logging.info(f"Drift score: {drift_score}")
+        if drift_score > drift_threshold:
+            logging.info("Significant drift detected! Triggering model retraining.")
+            return True
+        else:
+            logging.info("No significant drift. Model remains unchanged.")
+            return False
+    else:
+        logging.error("Drift score is None. Cannot determine retraining necessity.")
+        return False
+    
+
 if __name__ == "__main__":
     reference_path = "data/raw_data/reference.csv"
     current_path = "data/raw_data/current.csv"
     
     # Detect drift   
     drift_score = detect_data_drift(reference_path, current_path)
+
+    # Decide whether retraining is needed
+    retrain_needed = should_retrain(drift_score)
     
-    if drift_score is not None:
-        logging.info(f"Drift score: {drift_score}")
-        
-        #Trigger retraining if drift > 0.5
-        drift_threshold = 0.5
-        if drift_score > drift_threshold:
-            logging.info("Significant drift detected! Triggering model retraining.")
-        else:
-            logging.info("No Significant drift. Model remains unchanged")
+    if retrain_needed:
+        # Trigger retraining in your pipeline here
+        logging.info("Trigger retraining process.")
     else:
-        logging.error(f"Drift detection failed")
+        logging.info("No retraining needed.")
