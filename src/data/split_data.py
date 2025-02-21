@@ -125,11 +125,7 @@ def split_data(input_dir, output_dir, test_size=0.2, random_state=42):
     y_test.to_csv(os.path.join(output_dir, "y_test.csv"), index=False)
 
 
-<<<<<<< HEAD
 def main(input_file="data/raw_data/current.csv", output_dir="data/split_data"):
-=======
-def main(input_file="../../data/raw_data/raw.csv", output_dir="../../data/split_data"):
->>>>>>> origin/main
     """
     Main function to handle data splitting.
 
