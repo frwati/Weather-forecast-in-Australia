@@ -30,7 +30,11 @@ def train_model(X_train, y_train, best_params=None):
     return model
 
 
+<<<<<<< HEAD
 def save_trained_model(model, output_dir="models"):
+=======
+def save_trained_model(model, filename="../../models/saved_models/trained_model.pkl"):
+>>>>>>> origin/main
     """
     Saves the trained model to a specified file using BentoML.
 
@@ -46,13 +50,15 @@ def save_trained_model(model, output_dir="models"):
     logging.info(f"Model saved locally at {model_path}")
 
 
-def main(input_dir="data/normalized_data", output_dir="models"):
+def main(input_dir="../../data/normalized_data", output_dir_save="../../models/saved_models" ,input_dir_grid="../../models/best_parameters"):
     """
     Main function to train and save a RandomForestClassifier model.
 
     Args:
         input_dir (str): Path to the directory containing preprocessed training data.
-        output_dir (str): Path to save the trained model.
+        input_dir_grid (str): Path to the best Parameters from Grid
+        output_dir_save (str): Path to save the trained model.
+
     """
     # Set up logging
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -64,7 +70,7 @@ def main(input_dir="data/normalized_data", output_dir="models"):
     y_train = pd.read_csv(os.path.join(input_dir, "y_train.csv")).values.ravel()
 
     # Load the best parameters for GridSearchCV
-    best_params_file = os.path.join(output_dir, "best_params.pkl")
+    best_params_file = os.path.join(input_dir_grid, "best_params.pkl")
     if os.path.exists(best_params_file):
         logging.info(f"Loading best parameters from {best_params_file}...")
         best_params = joblib.load(best_params_file)
@@ -75,8 +81,13 @@ def main(input_dir="data/normalized_data", output_dir="models"):
     # Train the model using the best parameters
     model = train_model(X_train, y_train, best_params=best_params)
 
+<<<<<<< HEAD
     # Save the model in BentoML & DVC
     save_trained_model(model, output_dir)
+=======
+    # Save the trained model
+    save_trained_model(model, os.path.join(output_dir_save, "trained_model.pkl"))
+>>>>>>> origin/main
 
 
 if __name__ == "__main__":

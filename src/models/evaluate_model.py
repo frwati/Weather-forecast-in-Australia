@@ -84,6 +84,7 @@ def save_predictions(predictions, filename="metrics/predictions.csv"):
         logging.error(f"Failed to save predictions: {e}")
 
 
+<<<<<<< HEAD
 def load_previous_model_from_bentoml(X_test, y_test):
     """
     Load the previous model from BentoML and evaluate its F1 score.
@@ -130,6 +131,9 @@ def should_update_model(current_metrics, previous_metrics):
 
 
 def main(input_dir="data/normalized_data", output_dir="metrics", model_dir="models"):
+=======
+def main(input_dir="../../data/normalized_data", output_dir="../../metrics", model_dir="../../models/saved_models"):
+>>>>>>> origin/main
     """
     Main function to evaluate a trained model and save metrics and predictions.
     
