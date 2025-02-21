@@ -96,7 +96,7 @@ def normalize_data(input_dir, output_dir):
     logging.info(f"Normalized datasets and preprocessors saved to {output_dir}")
 
 
-def main(input_dir="data/split_data", output_dir="data/normalized_data"):
+def main(input_dir="../../data/split_data", output_dir="../../data/normalized_data"):
     """
     Main function to normalize data and save the output.
     

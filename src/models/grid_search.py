@@ -72,7 +72,7 @@ def save_best_params(best_params, filename="models/best_params.pkl"):
     logging.info("Best parameters saved successfully.")
 
 
-def main(input_dir="data/normalized_data", output_dir="models"):
+def main(input_dir="../../data/normalized_data/", output_dir="../../models/best_parameters"):
     """
     Main function to perform hyperparameter tuning and save the best parameters.
     
