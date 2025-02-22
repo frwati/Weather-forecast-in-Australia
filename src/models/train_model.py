@@ -30,11 +30,7 @@ def train_model(X_train, y_train, best_params=None):
     return model
 
 
-<<<<<<< HEAD
-def save_trained_model(model, output_dir="models"):
-=======
-def save_trained_model(model, filename="../../models/saved_models/trained_model.pkl"):
->>>>>>> origin/main
+def save_trained_model(model, filename="models/saved_models/trained_model.pkl"):
     """
     Saves the trained model to a specified file using BentoML.
 
@@ -42,15 +38,15 @@ def save_trained_model(model, filename="../../models/saved_models/trained_model.
         model (RandomForestClassifier): Trained model.
     """
     # Ensure the output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    #os.makedirs(output_dir, exist_ok=True)
     
     # Save model locally for DVC tracking
-    model_path = os.path.join(output_dir, "trained_model.pkl")
-    joblib.dump(model, model_path)
-    logging.info(f"Model saved locally at {model_path}")
+    #model_path = os.path.join(output_dir, "trained_model.pkl")
+    joblib.dump(model, filename)
+    logging.info(f"Model saved locally at {filename}")
 
 
-def main(input_dir="../../data/normalized_data", output_dir_save="../../models/saved_models" ,input_dir_grid="../../models/best_parameters"):
+def main(input_dir="../../data/normalized_data", output_dir_save="models/saved_models" ,input_dir_grid="../../models/best_parameters"):
     """
     Main function to train and save a RandomForestClassifier model.
 
@@ -81,13 +77,8 @@ def main(input_dir="../../data/normalized_data", output_dir_save="../../models/s
     # Train the model using the best parameters
     model = train_model(X_train, y_train, best_params=best_params)
 
-<<<<<<< HEAD
-    # Save the model in BentoML & DVC
-    save_trained_model(model, output_dir)
-=======
     # Save the trained model
     save_trained_model(model, os.path.join(output_dir_save, "trained_model.pkl"))
->>>>>>> origin/main
 
 
 if __name__ == "__main__":

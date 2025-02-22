@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ahmadalfrwati/Desktop/Ml_ops/mlruns/461023410626822892/4cfb80b4fc6944caacd875084918cabb/artifacts
+end_time: 1740239566341
+entry_point_name: ''
+experiment_id: '461023410626822892'
+lifecycle_stage: active
+run_id: 4cfb80b4fc6944caacd875084918cabb
+run_name: gregarious-fox-408
+run_uuid: 4cfb80b4fc6944caacd875084918cabb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740239566321
+status: 3
+tags: []
+user_id: ahmadalfrwati

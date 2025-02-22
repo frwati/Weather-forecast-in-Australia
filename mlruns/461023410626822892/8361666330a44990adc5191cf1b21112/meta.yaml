@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ahmadalfrwati/Desktop/Ml_ops/mlruns/461023410626822892/8361666330a44990adc5191cf1b21112/artifacts
+end_time: 1740239485938
+entry_point_name: ''
+experiment_id: '461023410626822892'
+lifecycle_stage: active
+run_id: 8361666330a44990adc5191cf1b21112
+run_name: whimsical-wren-574
+run_uuid: 8361666330a44990adc5191cf1b21112
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740239485922
+status: 3
+tags: []
+user_id: ahmadalfrwati

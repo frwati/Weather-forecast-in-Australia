@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ahmadalfrwati/Desktop/Ml_ops/mlruns/461023410626822892/5e936ad84ac6427c8ff1cdd813726395/artifacts
+end_time: 1740239569380
+entry_point_name: ''
+experiment_id: '461023410626822892'
+lifecycle_stage: active
+run_id: 5e936ad84ac6427c8ff1cdd813726395
+run_name: likeable-mink-780
+run_uuid: 5e936ad84ac6427c8ff1cdd813726395
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740239569358
+status: 3
+tags: []
+user_id: ahmadalfrwati

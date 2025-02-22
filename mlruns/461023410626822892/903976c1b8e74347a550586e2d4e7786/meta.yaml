@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/ahmadalfrwati/Desktop/Ml_ops/mlruns/461023410626822892/903976c1b8e74347a550586e2d4e7786/artifacts
+end_time: 1740239598630
+entry_point_name: ''
+experiment_id: '461023410626822892'
+lifecycle_stage: active
+run_id: 903976c1b8e74347a550586e2d4e7786
+run_name: respected-toad-274
+run_uuid: 903976c1b8e74347a550586e2d4e7786
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740239598605
+status: 3
+tags: []
+user_id: ahmadalfrwati
