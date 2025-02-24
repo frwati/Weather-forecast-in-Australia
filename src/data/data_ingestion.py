@@ -50,19 +50,24 @@ def download_and_process_data(dataset_name, raw_data_folder):
     
     #Save the latest dataset as 'current.csv'
     current_file_path = os.path.join(raw_data_folder, "current.csv")
-    shutil.copy(csv_file, current_file_path)
-    logging.info(f"Copied {csv_file} to {current_file_path}")
-    
-    # If 'reference.csv' does not exist, save the first data as reference
     reference_file_path = os.path.join(raw_data_folder, "reference.csv")
-    if not os.path.exists(reference_file_path):
-        shutil.copy(csv_file, reference_file_path)
-        logging.info(f"Reference dataset created at:{reference_file_path}")
-    else:
-        logging.info(f"Reference dataset already exists at: {reference_file_path}")
-        
-    return reference_file_path, current_file_path
 
+    # If current.csv exists, rename it to reference.csv
+    if os.path.exists(current_file_path):
+        if os.path.exists(reference_file_path):
+            os.remove(reference_file_path)
+            logging.info("Previous reference.csv deleted.")
+
+        os.rename(current_file_path, reference_file_path)
+        logging.info(f"Renamed existing current.csv to reference.csv: {reference_file_path}")
+    
+    # Copy the newly downloaded dataset as current.csv
+    shutil.copy(csv_file, current_file_path)
+    logging.info(f"Saved new dataset as current.csv: {current_file_path}")
+
+    return reference_file_path, current_file_path
+    
+    
 def main():
     # Define absolute path for project directory
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
