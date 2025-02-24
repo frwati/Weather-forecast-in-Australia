@@ -3,7 +3,6 @@ import logging
 import joblib
 import os
 import numpy as np
-#import bentoml
 import json
 from evidently.report import Report
 from evidently.metric_preset import ClassificationPreset
@@ -158,8 +157,7 @@ def main():
      # Load the deployed model and make predictions
     model_path = 'models/trained_model.pkl'  # Path to the saved model
     model = joblib.load(model_path)  # Load the model 
-    #model = bentoml.sklearn.load_model("weather_rf_model:latest")
-    
+        
     # Make predictions and add it to the X_current and X_reference
     X_current['prediction'] = model.predict(X_current)
     X_reference['prediction'] = model.predict(X_reference)
@@ -177,7 +175,7 @@ def main():
     classification_report.run(reference_data=X_reference, current_data=X_current, column_mapping=column_mapping)
 
        
-     # Extract the classification metrics from the report
+    # Extract the classification metrics from the report
     metrics = classification_report.as_dict()
 
     # Iterate through the list of metrics to find 'ClassificationQualityMetric'
@@ -197,7 +195,7 @@ def main():
         precision = current_metrics.get('precision', None)
         recall = current_metrics.get('recall', None)
 
-         # Print the extracted metrics
+        # Print the extracted metrics
         print(f"Accuracy: {accuracy}")
         print(f"F1 Score: {f1_score}")
         print(f"Precision: {precision}")
@@ -226,10 +224,10 @@ def main():
             previous_value = reference_metrics.get(metric, None)
             current_value = current_metrics.get(metric, None)
     
-        if previous_value is not None and current_value is not None:
-            print(f" {metric}: Previous = {previous_value:.4f}, Current = {current_value:.4f}, Drop = {drop:.4f}")
-        else:
-            print(f" {metric}: Missing in either reference or current metrics.")
+            if previous_value is not None and current_value is not None:
+                print(f" {metric}: Previous = {previous_value:.4f}, Current = {current_value:.4f}, Drop = {drop:.4f}")
+            else:
+                print(f" {metric}: Missing in either reference or current metrics.")
         
 
         # Check if retraining is needed
@@ -239,6 +237,15 @@ def main():
             print("\n**Performance Drift Detected! Retraining Required.**")
         else:
             print("\n**No Significant Performance Drift. Model is stable.**")
+
+        # Save drift results to json in the 'metrics/performance_drift/' directory
+        os.makedirs('metrics/performance_drift', exist_ok=True)
+        with open('metrics/performance_drift/model_drift.json', 'w') as f:
+            json.dump(performance_drop, f, indent=4)
+        
+        # Save drift report to html in the 'metrics/performance_drift/' directory
+        os.makedirs('reports/performance_drift', exist_ok=True)
+        classification_report.save_html('reports/performance_drift/model_drift_report.html')
 
         return retrain_needed
     else:

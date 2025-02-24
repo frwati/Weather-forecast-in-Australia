@@ -8,7 +8,7 @@ import logging
 #Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift.json", output_html="reports/data_drift.html"):
+def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift/data_drift.json", output_html="reports/data_drift/data_drift.html"):
     """
     Detects data drift between reference and current datasets.
     Saves results in JSON (for pipeline) and HTML (for visualization)
