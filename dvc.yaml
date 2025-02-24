@@ -14,8 +14,8 @@ stages:
       - data/raw_data/reference.csv
       - src/data/drift_monitoring.py
     outs:
-      - metrics/data_drift.json
-      - reports/data_drift.html
+      - metrics/data_drift/data_drift.json
+      - reports/data_drift/data_drift.html
 
   performance_drift_monitoring:
     cmd: python src/data/performance_drift_monitoring.py
@@ -23,26 +23,13 @@ stages:
       - data/raw_data/current.csv
       - data/raw_data/reference.csv
       - src/data/performance_drift_monitoring.py
-      - preprocessing/scalers/Humidity3pm_scaler.pkl
-      - preprocessing/scalers/Humidity9am_scaler.pkl
-      - preprocessing/scalers/MaxTemp_scaler.pkl
-      - preprocessing/scalers/MinTemp_scaler.pkl
-      - preprocessing/scalers/Pressure3pm_scaler.pkl
-      - preprocessing/scalers/Pressure9am_scaler.pkl
-      - preprocessing/scalers/Rainfall_scaler.pkl
-      - preprocessing/scalers/Temp3pm_scaler.pkl
-      - preprocessing/scalers/Temp9am_scaler.pkl
-      - preprocessing/scalers/WindGustSpeed_scaler.pkl
-      - preprocessing/scalers/WindSpeed3pm_scaler.pkl
-      - preprocessing/scalers/WindSpeed9am_scaler.pkl
-      - preprocessing/label_encoders/Location_le.pkl
-      - preprocessing/label_encoders/WindDir3pm_le.pkl
-      - preprocessing/label_encoders/WindDir9am_le.pkl
-      - preprocessing/label_encoders/WindGustDir_le.pkl
+      - preprocessing/scalers/
+      - preprocessing/label_encoders/
       - models/best_parameters/best_params.pkl
       - src/models/train_model.py
     outs:
-      - metrics/
+      - metrics/performance_drift/model_drift.json
+      - reports/performance_drift/model_drift_report.html
 
   splitting:
     cmd: python src/data/split_data.py
@@ -65,22 +52,8 @@ stages:
       - data/normalized_data/X_train_scaled.csv
       - data/normalized_data/y_test.csv
       - data/normalized_data/y_train.csv
-      - preprocessing/scalers/Humidity3pm_scaler.pkl
-      - preprocessing/scalers/Humidity9am_scaler.pkl
-      - preprocessing/scalers/MaxTemp_scaler.pkl
-      - preprocessing/scalers/MinTemp_scaler.pkl
-      - preprocessing/scalers/Pressure3pm_scaler.pkl
-      - preprocessing/scalers/Pressure9am_scaler.pkl
-      - preprocessing/scalers/Rainfall_scaler.pkl
-      - preprocessing/scalers/Temp3pm_scaler.pkl
-      - preprocessing/scalers/Temp9am_scaler.pkl
-      - preprocessing/scalers/WindGustSpeed_scaler.pkl
-      - preprocessing/scalers/WindSpeed3pm_scaler.pkl
-      - preprocessing/scalers/WindSpeed9am_scaler.pkl
-      - preprocessing/label_encoders/Location_le.pkl
-      - preprocessing/label_encoders/WindDir3pm_le.pkl
-      - preprocessing/label_encoders/WindDir9am_le.pkl
-      - preprocessing/label_encoders/WindGustDir_le.pkl
+      - preprocessing/scalers/
+      - preprocessing/label_encoders/
 
   grid_search:
     cmd: python src/models/grid_search.py
