@@ -4,7 +4,6 @@ from evidently.report import Report
 from evidently.metric_preset import DataDriftPreset
 import os
 import logging
-<<<<<<< HEAD
 from pathlib import Path
 
 # Configure logging
@@ -16,28 +15,17 @@ if os.path.exists("/.dockerenv"):
 else:
     PROJECT_ROOT = Path.cwd()
 
-=======
-
-#Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift.json", output_html="reports/data_drift.html"):
     """
     Detects data drift between reference and current datasets.
     Saves results in JSON (for pipeline) and HTML (for visualization)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     Args:
         reference_path (_type_): _description_
         current_path (_type_): _description_
         output_json (str, optional): _description_. Defaults to "metrics/data_drift.json".
         output_html (str, optional): _description_. Defaults to "reports/data_drift.html".
     """
-<<<<<<< HEAD
     reference_path = PROJECT_ROOT / reference_path
     current_path = PROJECT_ROOT / current_path
     output_json = PROJECT_ROOT / output_json
@@ -49,32 +37,16 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
         return
     
     if not current_path.exists():
-=======
-    #Check if file exists
-    if not os.path.exists(reference_path):
-        logging.error(f"Reference dataset {reference_path} is missing")
-        return
-    
-    if not os.path.exists(current_path):
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
         logging.error(f"Current dataset {current_path} is missing")
         return
     
     try:
-<<<<<<< HEAD
         # Load datasets
-=======
-        #Load datasets
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
         logging.info("Loading datasets for drift detection")
         reference_data = pd.read_csv(reference_path)
         current_data = pd.read_csv(current_path)
         
-<<<<<<< HEAD
         # Ensure both datasets have the same structure
-=======
-        #Ensure both datasets have the same structure
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
         if not all(reference_data.columns == current_data.columns):
             logging.error(f"Reference and current datasets have different columns")
             return
@@ -83,37 +55,22 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
         logging.error(f"Error while loading datasets: {e}")
         return
     
-<<<<<<< HEAD
     # Run Evidently drift Analysis
-=======
-    #Run Evidently drift Analysis
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     try:
         logging.info("Running Evidently drift detection")
         data_drift_report = Report(metrics=[DataDriftPreset()])
         data_drift_report.run(reference_data=reference_data, current_data=current_data)
     
-<<<<<<< HEAD
         # Save JSON (for pipeline processing)
         output_json.parent.mkdir(parents=True, exist_ok=True)
-=======
-        #Save JSON (for pipeline processing)
-        os.makedirs(os.path.dirname(output_json), exist_ok=True)
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
         drift_results = data_drift_report.as_dict()
         with open(output_json, "w") as f:
             json.dump(drift_results, f, indent=4)
         logging.info(f"Drift result saved to: {output_json}")
     
-<<<<<<< HEAD
         # Save HTML (for visualization) **FIX: Convert Path to str**
         output_html.parent.mkdir(parents=True, exist_ok=True)
         data_drift_report.save_html(str(output_html))  # <-- FIXED
-=======
-        #Save HTML (for visualization)
-        os.makedirs(os.path.dirname(output_html), exist_ok=True)
-        data_drift_report.save_html(output_html)
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
         logging.info(f"Drift report saved to: {output_html}")
     
         # Return drift score for monitoring

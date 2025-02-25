@@ -6,7 +6,6 @@ import joblib
 import bentoml
 
 
-<<<<<<< HEAD
 
 # Detect if running inside a Docker container
 if os.path.exists("/.dockerenv"):
@@ -70,8 +69,6 @@ def main():
     # Save model using both joblib and BentoML
     save_trained_model(model, os.path.join(output_dir_save, "trained_model.pkl"))
 
-=======
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 def train_model(X_train, y_train, best_params=None):
     """
     Trains a RandomForestClassifier using optional best hyperparameters.
