@@ -9,7 +9,6 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-<<<<<<< HEAD
 # Detect if running inside Docker
 if os.path.exists("/.dockerenv"):
     project_root = "/opt/airflow"  # Path inside Docker
@@ -17,8 +16,6 @@ if os.path.exists("/.dockerenv"):
     
 else:
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))  # Local path
-=======
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 
 def download_and_process_data(dataset_name, raw_data_folder):
     """
@@ -74,11 +71,6 @@ def download_and_process_data(dataset_name, raw_data_folder):
     return reference_file_path, current_file_path
 
 def main():
-<<<<<<< HEAD
-=======
-    # Define absolute path for project directory
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     raw_data_folder = os.path.join(project_root, "data", "raw_data")
 
     dataset_name = "jsphyg/weather-dataset-rattle-package"  # Modify as needed
