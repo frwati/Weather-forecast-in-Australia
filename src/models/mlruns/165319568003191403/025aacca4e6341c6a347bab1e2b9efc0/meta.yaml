@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/airflow/src/models/mlruns/165319568003191403/025aacca4e6341c6a347bab1e2b9efc0/artifacts
+end_time: 1740424953902
+entry_point_name: ''
+experiment_id: '165319568003191403'
+lifecycle_stage: active
+run_id: 025aacca4e6341c6a347bab1e2b9efc0
+run_name: kindly-fowl-236
+run_uuid: 025aacca4e6341c6a347bab1e2b9efc0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740424953663
+status: 3
+tags: []
+user_id: airflow

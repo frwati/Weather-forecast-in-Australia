@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/airflow/src/models/mlruns/165319568003191403/3362a1d6c6784fe2be43a5b4f36c70de/artifacts
+end_time: 1740445617847
+entry_point_name: ''
+experiment_id: '165319568003191403'
+lifecycle_stage: active
+run_id: 3362a1d6c6784fe2be43a5b4f36c70de
+run_name: sedate-bird-181
+run_uuid: 3362a1d6c6784fe2be43a5b4f36c70de
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740445617632
+status: 3
+tags: []
+user_id: airflow

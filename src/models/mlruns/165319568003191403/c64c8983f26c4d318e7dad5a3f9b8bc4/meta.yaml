@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/airflow/src/models/mlruns/165319568003191403/c64c8983f26c4d318e7dad5a3f9b8bc4/artifacts
+end_time: 1740424982918
+entry_point_name: ''
+experiment_id: '165319568003191403'
+lifecycle_stage: active
+run_id: c64c8983f26c4d318e7dad5a3f9b8bc4
+run_name: likeable-bug-335
+run_uuid: c64c8983f26c4d318e7dad5a3f9b8bc4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740424982312
+status: 3
+tags: []
+user_id: airflow

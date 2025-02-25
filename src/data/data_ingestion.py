@@ -9,6 +9,13 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
+# Detect if running inside Docker
+if os.path.exists("/.dockerenv"):
+    project_root = "/opt/airflow"  # Path inside Docker
+    logging.info(f"we are in the path : {project_root}...")
+    
+else:
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))  # Local path
 
 def download_and_process_data(dataset_name, raw_data_folder):
     """
@@ -64,8 +71,6 @@ def download_and_process_data(dataset_name, raw_data_folder):
     return reference_file_path, current_file_path
 
 def main():
-    # Define absolute path for project directory
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
     raw_data_folder = os.path.join(project_root, "data", "raw_data")
 
     dataset_name = "jsphyg/weather-dataset-rattle-package"  # Modify as needed
@@ -77,6 +82,6 @@ def main():
         logging.error(f"Data ingestion failed: {e}")
         exit(1)
 
-
 if __name__ == "__main__":
+    logging.info(f"Project root is set to: {project_root}")
     main()

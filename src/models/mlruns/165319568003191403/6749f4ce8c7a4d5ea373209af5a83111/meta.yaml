@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/airflow/src/models/mlruns/165319568003191403/6749f4ce8c7a4d5ea373209af5a83111/artifacts
+end_time: 1740424348394
+entry_point_name: ''
+experiment_id: '165319568003191403'
+lifecycle_stage: active
+run_id: 6749f4ce8c7a4d5ea373209af5a83111
+run_name: bald-quail-27
+run_uuid: 6749f4ce8c7a4d5ea373209af5a83111
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740424347270
+status: 3
+tags: []
+user_id: airflow

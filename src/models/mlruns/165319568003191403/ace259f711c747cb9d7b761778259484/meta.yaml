@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/airflow/src/models/mlruns/165319568003191403/ace259f711c747cb9d7b761778259484/artifacts
+end_time: 1740445606744
+entry_point_name: ''
+experiment_id: '165319568003191403'
+lifecycle_stage: active
+run_id: ace259f711c747cb9d7b761778259484
+run_name: respected-stork-51
+run_uuid: ace259f711c747cb9d7b761778259484
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740445606603
+status: 3
+tags: []
+user_id: airflow
