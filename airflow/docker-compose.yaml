@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 version: "3"
 
+=======
+version: "3.8"
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 =======
 version: "3.8"
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
@@ -12,7 +16,11 @@ x-airflow-common: &airflow-common
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
 <<<<<<< HEAD
+<<<<<<< HEAD
     AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:-}
+=======
+    AIRFLOW__CORE__FERNET_KEY: ""
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 =======
     AIRFLOW__CORE__FERNET_KEY: ""
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
@@ -22,22 +30,29 @@ x-airflow-common: &airflow-common
     AIRFLOW__SMTP__SMTP_HOST: "smtp.gmail.com"
     AIRFLOW__SMTP__SMTP_PORT: 587
 <<<<<<< HEAD
+<<<<<<< HEAD
     AIRFLOW__SMTP__SMTP_USER: airflow
     AIRFLOW__SMTP__SMTP_PASSWORD: airflow
     AIRFLOW__SMTP__SMTP_MAIL_FROM: ${SMTP_USER}
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-docker pymongo scikit-learn kagglehub imblearn mlflow bentoml evidently python-multipart}
 
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     AIRFLOW__SMTP__SMTP_USER: "de.airflow@gmail.com"
     AIRFLOW__SMTP__SMTP_PASSWORD: "cfsrvkongsobheta"
     AIRFLOW__SMTP__SMTP_MAIL_FROM: "de.airflow@gmail.com"
 
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- scikit-learn}
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
+<<<<<<< HEAD
 <<<<<<< HEAD
     - ../src/data:/opt/airflow/src/data
     - ../data/raw_data:/opt/airflow/data/raw_data
@@ -49,12 +64,17 @@ x-airflow-common: &airflow-common
     - ../models/best_parameters:/opt/airflow/models/best_parameters
     - ../models/saved_models:/opt/airflow/models/saved_models 
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     - type: bind
       source: ./clean_data
       target: /app/clean_data
     - type: bind
       source: ./raw_files
       target: /app/raw_files
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
@@ -92,10 +112,13 @@ services:
   airflow-webserver:
     <<: *airflow-common
 <<<<<<< HEAD
+<<<<<<< HEAD
     command: ["airflow", "webserver"]
     ports:
       - "8081:8080"
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     command: webserver
     ports:
       - 8080:8080
@@ -104,14 +127,20 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     restart: always
 
   airflow-scheduler:
     <<: *airflow-common
 <<<<<<< HEAD
+<<<<<<< HEAD
     command: ["airflow", "scheduler"]
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     command: scheduler
     healthcheck:
       test:
@@ -122,14 +151,20 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     restart: always
 
   airflow-worker:
     <<: *airflow-common
 <<<<<<< HEAD
+<<<<<<< HEAD
     command: ["celery", "worker"]
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     command: ["airflow", "celery", "worker"]
     healthcheck:
       test:
@@ -138,11 +173,15 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     restart: always
 
   airflow-init:
     <<: *airflow-common
+<<<<<<< HEAD
 <<<<<<< HEAD
     command: ["airflow", "db", "init"]
     environment:
@@ -154,6 +193,8 @@ services:
     <<: *airflow-common
     command: ["celery", "flower"]
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     command: version
     environment:
       <<: *airflow-common-env
@@ -165,6 +206,9 @@ services:
   flower:
     <<: *airflow-common
     command: celery flower
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     ports:
       - 5555:5555
@@ -176,7 +220,10 @@ services:
     restart: always
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
   dashboard:
     image: datascientest/dashapp:1.0.0
     volumes:
@@ -189,6 +236,9 @@ services:
     ports:
       - 8050:8050
 
+<<<<<<< HEAD
+>>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
+=======
 >>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 volumes:
   postgres-db-volume:
