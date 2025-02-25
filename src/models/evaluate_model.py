@@ -65,59 +65,6 @@ def save_predictions(predictions, filename=OUTPUT_DIR / "predictions.csv"):
         logging.error(f"Failed to save predictions: {e}")
 
 
-<<<<<<< HEAD
-
-def load_previous_model_from_bentoml(X_test, y_test):
-    try:
-        previous_model = bentoml.sklearn.load_model("weather_rf_model:latest")
-        if previous_model:
-            logging.info("Evaluating previous model...")
-            metrics, _ = evaluate_model(X_test, y_test, previous_model)
-            return metrics["f1_score"]
-    except Exception as e:
-        logging.error(f"Error loading model: {e}")
-    return None
-
-
-def should_update_model(current_metrics, previous_metrics):
-    return current_metrics["f1_score"] >= previous_metrics
-
-
-def main():
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    try:
-        logging.info("Loading test data...")
-        X_test = pd.read_csv(INPUT_DIR / "X_test_scaled.csv")
-        y_test = pd.read_csv(INPUT_DIR / "y_test.csv").values.ravel()
-        
-        model_path = MODEL_DIR / "trained_model.pkl"
-        if not model_path.exists():
-            logging.error(f"Model not found at {model_path}. Exiting.")
-            return
-
-        logging.info(f"Loading model from {model_path}...")
-        model = joblib.load(model_path)
-        
-        metrics, predictions = evaluate_model(X_test, y_test, model)
-        save_metrics(metrics)
-        save_predictions(predictions)
-        
-        previous_metrics = load_previous_model_from_bentoml(X_test, y_test)
-        if previous_metrics is not None:
-            if should_update_model(metrics, previous_metrics):
-                logging.info("Updating BentoML model...")
-                bentoml.sklearn.save_model("weather_rf_model", model)
-            else:
-                logging.info("Current model does not improve. No update.")
-        else:
-            logging.info("No previous model found. Saving current model.")
-            bentoml.sklearn.save_model("weather_rf_model", model)
-    except Exception as e:
-        logging.error(f"Error in main execution: {e}")
-
-=======
-<<<<<<< HEAD
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
 def load_previous_model_from_bentoml(X_test, y_test):
     """
     Load the previous model from BentoML and evaluate its F1 score.
@@ -164,12 +111,6 @@ def should_update_model(current_metrics, previous_metrics):
 
 
 def main(input_dir="data/normalized_data", output_dir="metrics", model_dir="models"):
-<<<<<<< HEAD
-=======
-=======
-def main(input_dir="../../data/normalized_data", output_dir="../../metrics", model_dir="../../models/saved_models"):
->>>>>>> origin/main
->>>>>>> 60a6f7160f0a0c68122143a5e5ef1ebf3b6e2495
     """
     Main function to evaluate a trained model and save metrics and predictions.
     
