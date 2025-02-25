@@ -1,4 +1,4 @@
 /config.local
 /tmp
 /ml
-dvc_remote/
+/dvc_remote/
