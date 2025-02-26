@@ -84,43 +84,59 @@ This script handles the ingestion of new weather data, whether by scraping, pull
 ### I. Data Drift Monitoring(src/data/drift_monitoring.py)
 This file is responsible for detecting data drift. Data drift refers to the change in the statistical properties of the input data over time, which can affect the model's accuracy. The script monitors these changes to ensure the model remains valid.
 ### Example usage: 
-```python src/data/drift_monitoring.py```
+```
+python src/data/drift_monitoring.py
+```
 
 ### II. Model Drift Monitoring (src/data/performance_drift_monitoring.py)
 This script tracks performance drift, which is the degradation of the model’s performance over time. It uses performance metrics (e.g., accuracy, F1 score) to monitor if the model's predictions are becoming less reliable, signaling a need for retraining.
 ### Example usage: 
-```python src/data/performance_drift_monitoring.py```
+```
+python src/data/performance_drift_monitoring.py
+```
 
 ### 3. Data Splitting (src/data/split.py)
 This script is responsible for splitting the dataset into training and testing sets. It ensures that data leakage is prevented and the model is trained on one part of the data and tested on another.
 ### Example usage: 
-```python src/data/split.py```
+```
+python src/data/split.py
+```
 
 
 ### 4. Data Normalization (src/data/normalize.py)
 This script normalizes the dataset. Normalization scales the features so that they all lie within the same range, improving model convergence during training.
 ### Example usage: 
-```python src/data/normalize.py```
+```
+python src/data/normalize.py
+```
 
 
 ### 5. Grid Search for Hyperparameter Tuning (src/models/grid_search.py)
 This script performs hyperparameter tuning using Grid Search to find the optimal set of parameters for the model. It helps in improving the model's performance by systematically testing combinations of different hyperparameters.
 ### Example usage: 
-```python src/models/grid_search.py```
+```
+python src/models/grid_search.py
+```
 
 
 ### 6. Model Training (src/models/train_model.py)
 This script trains the model using the training data. It involve using machine learning algorithms RandomForestClassifier.
 ### Example usage:
-```python src/models/train_model.py```
+```
+python src/models/train_model.py
+```
 
 
 ### 7. Model Evaluation (src/models/evaluate.py)
 After the model is trained, this script evaluates its performance on the test data, using metrics such as accuracy, precision, recall, or mean squared error.
 ### Example usage: 
-```python src/models/evaluate.py```
+```
+python src/models/evaluate.py
+```
 
 ### 8. API service (src/service.py)
 This file contains the Bentoml API service, which wraps the trained weather prediction model into an API for real-time predictions. It integrates JWT authentication to secure the service, ensuring only authorized users can access the weather prediction functionality.
 ### Example usage: 
-```src/service.py```
+```
+src/service.py
+```
