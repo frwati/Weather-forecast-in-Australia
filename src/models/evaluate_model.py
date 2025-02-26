@@ -175,6 +175,19 @@ def main(input_dir="data/normalized_data", output_dir="metrics", model_dir="mode
             logging.info("No previous model in BentoML. Saving the current model.")
             bentoml.sklearn.save_model("weather_rf_model", model)
 
+        # Remove 'reference.csv' if it exists and rename 'current.csv' to 'reference.csv'
+        raw_data_folder = os.path.join("data", "raw_data")
+        reference_file_path = os.path.join(raw_data_folder, "reference.csv")
+        current_file_path = os.path.join(raw_data_folder, "current.csv")
+
+        if os.path.exists(reference_file_path):
+            os.remove(reference_file_path)
+            logging.info(f"Removed existing reference.csv: {reference_file_path}")
+
+        if os.path.exists(current_file_path):
+            os.rename(current_file_path, reference_file_path)
+            logging.info(f"Renamed current.csv to reference.csv: {reference_file_path}")
+
     except Exception as e:
         logging.error(f"An error occurred in the main execution: {e}")
 

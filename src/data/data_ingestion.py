@@ -50,22 +50,12 @@ def download_and_process_data(dataset_name, raw_data_folder):
     
     #Save the latest dataset as 'current.csv'
     current_file_path = os.path.join(raw_data_folder, "current.csv")
-    reference_file_path = os.path.join(raw_data_folder, "reference.csv")
-
-    # If current.csv exists, rename it to reference.csv
-    if os.path.exists(current_file_path):
-        if os.path.exists(reference_file_path):
-            os.remove(reference_file_path)
-            logging.info("Previous reference.csv deleted.")
-
-        os.rename(current_file_path, reference_file_path)
-        logging.info(f"Renamed existing current.csv to reference.csv: {reference_file_path}")
-    
+ 
     # Copy the newly downloaded dataset as current.csv
     shutil.copy(csv_file, current_file_path)
     logging.info(f"Saved new dataset as current.csv: {current_file_path}")
 
-    return reference_file_path, current_file_path
+    return current_file_path
     
     
 def main():
@@ -76,8 +66,8 @@ def main():
     dataset_name = "jsphyg/weather-dataset-rattle-package"  # Modify as needed
 
     try:
-        ref_path, cur_path = download_and_process_data(dataset_name, raw_data_folder)
-        logging.info(f"Data ingestion complete. Reference: {ref_path}, Current: {cur_path}")
+        cur_path = download_and_process_data(dataset_name, raw_data_folder)
+        logging.info(f"Data ingestion complete. Saved to: {cur_path}")
     except Exception as e:
         logging.error(f"Data ingestion failed: {e}")
         exit(1)
