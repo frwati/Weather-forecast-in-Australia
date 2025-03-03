@@ -1,0 +1,528 @@
+[2025-03-03T15:44:46.918+0000] {processor.py:161} INFO - Started process (PID=67) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:44:46.919+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T15:44:46.922+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:44:46.921+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:44:46.933+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:44:46.931+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T15:44:46.934+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:44:46.965+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.053 seconds
+[2025-03-03T15:45:17.571+0000] {processor.py:161} INFO - Started process (PID=117) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:17.573+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T15:45:17.576+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:45:17.576+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:17.585+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:45:17.584+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T15:45:17.586+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:17.616+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.049 seconds
+[2025-03-03T15:45:48.068+0000] {processor.py:161} INFO - Started process (PID=167) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:48.070+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T15:45:48.072+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:45:48.072+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:48.087+0000] {logging_mixin.py:188} INFO - [2025-03-03T15:45:48.086+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T15:45:48.087+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T15:45:48.115+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.051 seconds
+[2025-03-03T16:12:50.456+0000] {processor.py:161} INFO - Started process (PID=122) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:12:50.458+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:12:50.461+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:12:50.460+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:12:50.469+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:12:50.468+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:12:50.470+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:12:50.498+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.047 seconds
+[2025-03-03T16:13:20.699+0000] {processor.py:161} INFO - Started process (PID=172) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:20.700+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:13:20.702+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:13:20.702+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:20.713+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:13:20.711+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:13:20.713+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:20.753+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.058 seconds
+[2025-03-03T16:13:51.095+0000] {processor.py:161} INFO - Started process (PID=222) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:51.097+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:13:51.099+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:13:51.099+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:51.107+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:13:51.106+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:13:51.108+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:13:51.135+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.044 seconds
+[2025-03-03T16:14:21.710+0000] {processor.py:161} INFO - Started process (PID=272) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:21.712+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:14:21.715+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:14:21.715+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:21.725+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:14:21.722+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:14:21.725+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:21.761+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.057 seconds
+[2025-03-03T16:14:51.965+0000] {processor.py:161} INFO - Started process (PID=322) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:51.968+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:14:51.973+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:14:51.972+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:52.006+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:14:51.994+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:14:52.007+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:14:52.069+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.110 seconds
+[2025-03-03T16:15:22.190+0000] {processor.py:161} INFO - Started process (PID=372) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:22.192+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:15:22.194+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:15:22.194+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:22.204+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:15:22.202+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:15:22.204+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:22.240+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.054 seconds
+[2025-03-03T16:15:52.553+0000] {processor.py:161} INFO - Started process (PID=422) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:52.554+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:15:52.557+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:15:52.556+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:52.565+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:15:52.564+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:15:52.565+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:15:52.593+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:16:22.817+0000] {processor.py:161} INFO - Started process (PID=472) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:16:22.818+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:16:22.820+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:16:22.820+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:16:22.829+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:16:22.827+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:16:22.829+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:16:22.857+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.043 seconds
+[2025-03-03T16:40:17.879+0000] {processor.py:161} INFO - Started process (PID=121) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:17.881+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:40:17.883+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:40:17.883+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:17.891+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:40:17.890+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:40:17.892+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:17.926+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.051 seconds
+[2025-03-03T16:40:48.220+0000] {processor.py:161} INFO - Started process (PID=171) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:48.222+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:40:48.224+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:40:48.224+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:48.232+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:40:48.231+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:40:48.233+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:40:48.262+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.046 seconds
+[2025-03-03T16:41:18.901+0000] {processor.py:161} INFO - Started process (PID=221) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:18.904+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:41:18.906+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:41:18.905+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:18.915+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:41:18.914+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:41:18.915+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:18.946+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.048 seconds
+[2025-03-03T16:41:49.071+0000] {processor.py:161} INFO - Started process (PID=271) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:49.074+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:41:49.078+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:41:49.077+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:49.093+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:41:49.090+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:41:49.096+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:41:49.158+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.091 seconds
+[2025-03-03T16:42:19.470+0000] {processor.py:161} INFO - Started process (PID=321) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:19.472+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:42:19.474+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:42:19.473+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:19.481+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:42:19.480+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:42:19.482+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:19.514+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.048 seconds
+[2025-03-03T16:42:49.703+0000] {processor.py:161} INFO - Started process (PID=371) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:49.705+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:42:49.708+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:42:49.707+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:49.716+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:42:49.715+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:42:49.717+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:42:49.747+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.047 seconds
+[2025-03-03T16:43:19.800+0000] {processor.py:161} INFO - Started process (PID=421) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:19.802+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:43:19.804+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:43:19.804+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:19.813+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:43:19.811+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:43:19.813+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:19.840+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.044 seconds
+[2025-03-03T16:43:50.085+0000] {processor.py:161} INFO - Started process (PID=471) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:50.088+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:43:50.091+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:43:50.090+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:50.099+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:43:50.098+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:43:50.100+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:43:50.128+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.046 seconds
+[2025-03-03T16:44:20.390+0000] {processor.py:161} INFO - Started process (PID=521) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:20.392+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:44:20.394+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:44:20.394+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:20.402+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:44:20.401+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:44:20.403+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:20.430+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.044 seconds
+[2025-03-03T16:44:50.523+0000] {processor.py:161} INFO - Started process (PID=571) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:50.525+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:44:50.528+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:44:50.527+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:50.536+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:44:50.535+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:44:50.536+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:44:50.567+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.047 seconds
+[2025-03-03T16:45:21.166+0000] {processor.py:161} INFO - Started process (PID=621) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:21.168+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:45:21.170+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:45:21.170+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:21.182+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:45:21.181+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:45:21.182+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:21.210+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.047 seconds
+[2025-03-03T16:45:51.656+0000] {processor.py:161} INFO - Started process (PID=671) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:51.658+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:45:51.660+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:45:51.660+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:51.668+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:45:51.666+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:45:51.668+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:45:51.697+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:46:22.122+0000] {processor.py:161} INFO - Started process (PID=721) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:22.124+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:46:22.126+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:46:22.126+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:22.134+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:46:22.132+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:46:22.134+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:22.163+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:46:52.577+0000] {processor.py:161} INFO - Started process (PID=771) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:52.579+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:46:52.581+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:46:52.581+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:52.589+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:46:52.588+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:46:52.590+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:46:52.618+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:47:23.130+0000] {processor.py:161} INFO - Started process (PID=821) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:23.132+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:47:23.134+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:47:23.133+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:23.142+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:47:23.141+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:47:23.143+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:23.169+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:47:53.646+0000] {processor.py:161} INFO - Started process (PID=871) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:53.649+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:47:53.651+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:47:53.651+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:53.666+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:47:53.664+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:47:53.668+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:47:53.708+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.069 seconds
+[2025-03-03T16:48:23.768+0000] {processor.py:161} INFO - Started process (PID=921) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:23.770+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:48:23.772+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:48:23.771+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:23.780+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:48:23.779+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:48:23.781+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:23.809+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.046 seconds
+[2025-03-03T16:48:54.152+0000] {processor.py:161} INFO - Started process (PID=971) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:54.154+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:48:54.157+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:48:54.156+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:54.165+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:48:54.163+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:48:54.165+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:48:54.195+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.047 seconds
+[2025-03-03T16:49:24.552+0000] {processor.py:161} INFO - Started process (PID=1021) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:24.554+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:49:24.556+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:49:24.556+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:24.564+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:49:24.563+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:49:24.565+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:24.593+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.044 seconds
+[2025-03-03T16:49:55.021+0000] {processor.py:161} INFO - Started process (PID=1071) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:55.023+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:49:55.025+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:49:55.025+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:55.033+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:49:55.032+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:49:55.033+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:49:55.062+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds
+[2025-03-03T16:50:25.207+0000] {processor.py:161} INFO - Started process (PID=1121) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:25.209+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:50:25.211+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:50:25.211+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:25.219+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:50:25.218+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:50:25.220+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:25.248+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.046 seconds
+[2025-03-03T16:50:55.332+0000] {processor.py:161} INFO - Started process (PID=1171) to work on /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:55.334+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/weather_pipeline_dag.py for tasks to queue
+[2025-03-03T16:50:55.336+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:50:55.336+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:55.345+0000] {logging_mixin.py:188} INFO - [2025-03-03T16:50:55.343+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/weather_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_pipeline_dag.py", line 52, in <module>
+    data_drift_task = BashOperator(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 420, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'bash_command'
+[2025-03-03T16:50:55.345+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_pipeline_dag.py
+[2025-03-03T16:50:55.373+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/weather_pipeline_dag.py took 0.045 seconds

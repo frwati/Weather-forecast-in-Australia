@@ -16,7 +16,6 @@ f1_score_gauge = Gauge('model_f1_score', 'F1 score of the model', ['model'])
 precision_gauge = Gauge('model_precision', 'Model precision', ['model'])
 recall_gauge = Gauge('model_recall', 'Model recall', ['model'])
 
-
 # Define constants
 SCALER_DIR = 'preprocessing/scalers'
 LE_DIR = 'preprocessing/label_encoders'
@@ -59,7 +58,6 @@ def load_preprocessors(scaler_dir=SCALER_DIR, le_dir=LE_DIR):
     logging.info("Preprocessors loaded successfully.")
     return scalers, label_encoders
 
-
 def fill_missing_temps(df, date_column='Date', column=None):
     """
     Fills missing values in the specified column by taking the median value
@@ -87,7 +85,6 @@ def fill_missing_temps(df, date_column='Date', column=None):
     df.drop(columns=['day_month'], inplace=True)
 
     return df
-
 
 def preprocess_data(input_file, scalers, label_encoders):
     """
@@ -162,7 +159,6 @@ def preprocess_data(input_file, scalers, label_encoders):
     y = df['RainTomorrow']
     return X, y
 
-    
 def main():
     # Paths
     current_data_path = "data/raw_data/current.csv"
@@ -177,7 +173,7 @@ def main():
     X_current, y_current = preprocess_data(current_data_path, scalers, label_encoders)
     X_reference, y_reference = preprocess_data(reference_data_path, scalers, label_encoders)
       
-     # Load the deployed model and make predictions
+    # Load the deployed model and make predictions
     model_path = 'models/trained_model.pkl'  # Path to the saved model
     model = joblib.load(model_path)  # Load the model 
     
@@ -202,10 +198,10 @@ def main():
 
     # Calculate performance drift metrics
     classification_quality_metric = next(
-	(metric['result'] for metric in metrics['metrics'] if metric['metrics'] == 'ClassificationQualityMetric'), None)
+        (metric['result'] for metric in metrics['metrics'] if metric['metrics'] == 'ClassificationQualityMetric'), None)
 
     if classification_quality_metric:
-	current_metrics = classification_quality_metric['current']
+        current_metrics = classification_quality_metric['current']
         reference_metrics = classification_quality_metric['reference']
 
         # Now safely access the classification metrics of current dataset
@@ -237,19 +233,19 @@ def main():
         }
 
         # Expose performance drift to prometheus
-	expose_performance_drift(performance_drop)
+        expose_performance_drift(performance_drop)
 
-	# Print comparison logs
+        # Print comparison logs
         print("\n **Performance Drift Comparison:**")
         for metric, drop in performance_drop.items():
             # Use .get() method to avoid KeyError if metric is missing
             previous_value = reference_metrics.get(metric, None)
             current_value = current_metrics.get(metric, None)
-    
-        if previous_value is not None and current_value is not None:
-            print(f" {metric}: Previous = {previous_value:.4f}, Current = {current_value:.4f}, Drop = {drop:.4f}")
-        else:
-            print(f" {metric}: Missing in either reference or current metrics.")
+
+            if previous_value is not None and current_value is not None:
+                print(f" {metric}: Previous = {previous_value:.4f}, Current = {current_value:.4f}, Drop = {drop:.4f}")
+            else:
+                print(f" {metric}: Missing in either reference or current metrics.")
         
 
         # Check if retraining is needed
@@ -263,9 +259,8 @@ def main():
         return retrain_needed
     else:
         logging.error("Classification Quality Metric not found in the report")
-	return False
+        return False
 
 if __name__ == "__main__":
     retrain_needed = main()
     exit(1 if retrain_needed else 0)
-

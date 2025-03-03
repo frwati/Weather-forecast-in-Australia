@@ -32,8 +32,8 @@ def expose_data_drift(drift_score):
     Expose the data drift score to Prometheus.
     """
     if drift_score is not None:
-	drift_core_gauge.labels(model='Weather_rf_model').set(drift_score)
-	logging.info(f"Exposed data drift score: {drift_score}")
+        drift_score_gauge.labels(model='Weather_rf_model').set(drift_score)
+        logging.info(f"Exposed data drift score: {drift_score}")
 
 def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift.json", output_html="reports/data_drift.html"):
     """
@@ -129,22 +129,19 @@ def main():
     reference_path = "data/raw_data/reference.csv"
     current_path = "data/raw_data/current.csv"
 
-    while True:
-	# Detect drift
-	drift_score = detect_data_drift(reference_path, current_path)
-	expose_data_drift(drift_score)
+    # Detect drift
+    drift_score = detect_data_drift(reference_path, current_path)
+    expose_data_drift(drift_score)
 
-	# Decide whether retraining is needed
-	retrain_needed = should_retrain(drift_score)
+    # Decide whether retraining is needed
+    retrain_needed = should_retrain(drift_score)
     
-	if retrain_needed:
-             # Trigger retraining in your pipeline here
-             logging.info("Trigger retraining process.")
-        else:
-             logging.info("No retraining needed.")
+    if retrain_needed:
+        # Trigger retraining in your pipeline here
+        logging.info("Trigger retraining process.")
+    else:
+        logging.info("No retraining needed.")
 
-	# Sleep before next monitoring cycle
-	time.sleep(60)
-
+        
 if __name__ == "__main__":
     main()
