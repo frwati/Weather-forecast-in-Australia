@@ -7,6 +7,7 @@ import json
 from evidently.report import Report
 from evidently.metric_preset import ClassificationPreset
 from evidently.pipeline.column_mapping import ColumnMapping
+from evidently.ui.workspace import Workspace
 
 # Detect if running inside Airflow's Docker container
 if os.path.exists("/.dockerenv"):
@@ -161,6 +162,31 @@ def save_model_drift_metrics(metrics, output_path):
     # Write the metrics to the file
     with open(output_path, 'w') as f:
         json.dump(metrics, f, indent=4)
+
+def add_report_to_workspace(workspace_name, project_name, project_description, report):
+    """
+    Adds a report to an existing or new project in a workspace.
+    """
+    # Create or get workspace
+    workspace = Workspace.create(workspace_name)
+
+    # Check if project already exists
+    project = None
+    for p in workspace.list_projects():
+        if p.name == project_name:
+            project = p
+            break
+
+    # Create a new project if it doesn't exist
+    if project is None:
+        project = workspace.create_project(project_name)
+        project.description = project_description
+
+    # Add report to the project
+    workspace.add_report(project.id, report)
+    logging.info(f"New report added to project {project_name}")
+
+
 def main():
    
     # Load the saved scalers and label encoders
@@ -260,6 +286,15 @@ def main():
             print("\n**Performance Drift Detected! Retraining Required.**")
         else:
             print("\n**No Significant Performance Drift. Model is stable.**")
+
+        # Add the classification report to the workspace
+        WORKSPACE_NAME = "Weather-Classification"
+        PROJECT_NAME = "Weather Forecast in Australia"
+        PROJECT_DESCRIPTION = "This project focuses on building a weather forecasting system for Australia using machine learning models."
+
+        add_report_to_workspace(WORKSPACE_NAME, PROJECT_NAME, PROJECT_DESCRIPTION, classification_report)
+    
+
 
         return retrain_needed
     else:

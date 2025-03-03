@@ -5,6 +5,7 @@ from evidently.metric_preset import DataDriftPreset
 import os
 import logging
 from pathlib import Path
+from evidently.ui.workspace import Workspace
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -13,7 +14,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 if os.path.exists("/.dockerenv"):
     PROJECT_ROOT = Path("/opt/airflow")  # Docker
 else:
-    PROJECT_ROOT = Path.cwd()
+    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    #PROJECT_ROOT = Path.cwd()
 
 def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift.json", output_html="reports/data_drift.html"):
     """
@@ -75,7 +77,7 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
     
         # Return drift score for monitoring
         drift_score = drift_results["metrics"][0]["result"]["drift_share"]
-        return drift_score
+        return data_drift_report,drift_score
     
     except Exception as e:
         logging.error(f"Error during drift analysis: {e}")
@@ -103,18 +105,47 @@ def should_retrain(drift_score, drift_threshold=0.5):
         return False
     
 
+
+def add_report_to_workspace(workspace_name, project_name, project_description, report):
+    """
+    Adds a report to an existing or new project in a workspace.
+    """
+    # Create or get workspace
+    workspace = Workspace.create(workspace_name)
+
+    # Check if project already exists
+    project = None
+    for p in workspace.list_projects():
+        if p.name == project_name:
+            project = p
+            break
+
+    # Create a new project if it doesn't exist
+    if project is None:
+        project = workspace.create_project(project_name)
+        project.description = project_description
+
+    # Add report to the project
+    workspace.add_report(project.id, report)
+    logging.info(f"New report added to project {project_name}")
+
 if __name__ == "__main__":
-    reference_path = "data/raw_data/reference.csv"
-    current_path = "data/raw_data/current.csv"
-    
+    WORKSPACE_NAME = "Weather-Classification"
+    PROJECT_NAME = "Weather Forecast in Australia"
+    PROJECT_DESCRIPTION = "This project focuses on building a weather forecasting system for Australia using machine learning models. The pipeline includes data preparation,drift monitoring, model training, hyperparameter tuning, and evaluation."
+
+    reference_path = os.path.join(PROJECT_ROOT, "data/raw_data/reference.csv")
+    current_path = os.path.join(PROJECT_ROOT, "data/raw_data/current.csv")
     # Detect drift   
-    drift_score = detect_data_drift(reference_path, current_path)
+    data_drift_report,drift_score = detect_data_drift(reference_path, current_path)
+
+    add_report_to_workspace(WORKSPACE_NAME, PROJECT_NAME, PROJECT_DESCRIPTION, data_drift_report)
+
 
     # Decide whether retraining is needed
     retrain_needed = should_retrain(drift_score)
     
     if retrain_needed:
-        # Trigger retraining in your pipeline here
         logging.info("Trigger retraining process.")
     else:
         logging.info("No retraining needed.")
