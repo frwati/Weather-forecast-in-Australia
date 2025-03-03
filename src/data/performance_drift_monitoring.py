@@ -292,7 +292,8 @@ def main():
         PROJECT_NAME = "Weather Forecast in Australia"
         PROJECT_DESCRIPTION = "This project focuses on building a weather forecasting system for Australia using machine learning models."
 
-        add_report_to_workspace(WORKSPACE_NAME, PROJECT_NAME, PROJECT_DESCRIPTION, classification_report)
+        workspace = Workspace.create(WORKSPACE_NAME)
+        add_report_to_workspace(workspace, PROJECT_NAME, PROJECT_DESCRIPTION, classification_report)
     
 
 

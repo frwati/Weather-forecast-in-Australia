@@ -118,7 +118,7 @@ def add_report_to_workspace(workspace_name, project_name, project_description, r
     Adds a report to an existing or new project in a workspace.
     """
     # Create or get workspace
-    workspace = Workspace.create(workspace_name)
+    #workspace = Workspace.create(workspace_name)
 
     # Check if project already exists
     project = None
@@ -146,7 +146,9 @@ if __name__ == "__main__":
     # Detect drift   
     data_drift_report,drift_score = detect_data_drift(reference_path, current_path)
 
-    add_report_to_workspace(WORKSPACE_NAME, PROJECT_NAME, PROJECT_DESCRIPTION, data_drift_report)
+    workspace = Workspace.create(WORKSPACE_NAME)
+
+    add_report_to_workspace(workspace, PROJECT_NAME, PROJECT_DESCRIPTION, data_drift_report)
 
 
     # Decide whether retraining is needed
