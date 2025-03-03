@@ -5,6 +5,8 @@ from evidently.metric_preset import DataDriftPreset
 import os
 import logging
 from pathlib import Path
+from prometheus_client import start_http_server, Gauge
+import time
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -14,6 +16,24 @@ if os.path.exists("/.dockerenv"):
     PROJECT_ROOT = Path("/opt/airflow")  # Docker
 else:
     PROJECT_ROOT = Path.cwd()
+
+# Define Prometheus metric objects
+drift_score_gauge = Gauge('data_drift_score', 'The current data drift score', ['model']
+
+def start_prometheus_server(port=8000):
+    """
+    Starts a Prometheus metrics server to expose drift score.
+    """
+    start_http_server(port)
+    logging.info(f"Prometheus metrics exposed on port {port}")
+
+def expose_data_drift(drift_score):
+    """
+    Expose the data drift score to Prometheus.
+    """
+    if drift_score is not None:
+	drift_core_gauge.labels(model='Weather_rf_model').set(drift_score)
+	logging.info(f"Exposed data drift score: {drift_score}")
 
 def detect_data_drift(reference_path, current_path, output_json="metrics/data_drift.json", output_html="reports/data_drift.html"):
     """
@@ -102,19 +122,29 @@ def should_retrain(drift_score, drift_threshold=0.5):
         logging.error("Drift score is None. Cannot determine retraining necessity.")
         return False
     
+def main():
+    # Start Prometheus server
+    start_prometheus_server(port=8000)
 
-if __name__ == "__main__":
     reference_path = "data/raw_data/reference.csv"
     current_path = "data/raw_data/current.csv"
-    
-    # Detect drift   
-    drift_score = detect_data_drift(reference_path, current_path)
 
-    # Decide whether retraining is needed
-    retrain_needed = should_retrain(drift_score)
+    while True:
+	# Detect drift
+	drift_score = detect_data_drift(reference_path, current_path)
+	expose_data_drift(drift_score)
+
+	# Decide whether retraining is needed
+	retrain_needed = should_retrain(drift_score)
     
-    if retrain_needed:
-        # Trigger retraining in your pipeline here
-        logging.info("Trigger retraining process.")
-    else:
-        logging.info("No retraining needed.")
+	if retrain_needed:
+             # Trigger retraining in your pipeline here
+             logging.info("Trigger retraining process.")
+        else:
+             logging.info("No retraining needed.")
+
+	# Sleep before next monitoring cycle
+	time.sleep(60)
+
+if __name__ == "__main__":
+    main()

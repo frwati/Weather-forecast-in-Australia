@@ -17,6 +17,11 @@ x-airflow-common: &airflow-common
     AIRFLOW__SMTP__SMTP_PASSWORD: airflow
     AIRFLOW__SMTP__SMTP_MAIL_FROM: ${SMTP_USER}
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-docker pymongo scikit-learn kagglehub imblearn mlflow bentoml evidently python-multipart}
+    
+    AIRFLOW_METRICS_STATSD_ON: "True"
+    AIRFLOW_METRIS_STATSD_HOST: "localhost"
+    AIRFLOW_METRICS_STATSD_PORT: "9125"
+    AIRFLOW_METRICS_STATSD_PREFIX: "airflow"
 
   volumes:
     - ./dags:/opt/airflow/dags
@@ -95,6 +100,38 @@ services:
     command: ["airflow", "celery", "flower"]
     ports:
       - 5555:5555
+    restart: always
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    restart: always
+
+  airflow-exporter:
+    image: "opstree/airflow-exporter:latest"
+    container_name: airflow-exporter
+    environment:
+      - AIRFLOW_URL=http://airflow-webserver:8080
+      - AIRFLOW_USER=admin
+      - AIRFLOW_PASSWORD=admin
+    ports:
+      - "9112:9112"
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     restart: always
 
 volumes:

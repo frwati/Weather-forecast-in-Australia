@@ -3,17 +3,39 @@ import logging
 import joblib
 import os
 import numpy as np
-#import bentoml
 import json
 from evidently.report import Report
 from evidently.metric_preset import ClassificationPreset
 from evidently.pipeline.column_mapping import ColumnMapping
+from prometheus_client import start_http_server, Gauge
+import time
+
+# Define Prometheus metric objects
+accuracy_gauge = Gauge('model_accuracy', 'Model accuracy', ['model'])
+f1_score_gauge = Gauge('model_f1_score', 'F1 score of the model', ['model'])
+precision_gauge = Gauge('model_precision', 'Model precision', ['model'])
+recall_gauge = Gauge('model_recall', 'Model recall', ['model'])
 
 
 # Define constants
 SCALER_DIR = 'preprocessing/scalers'
 LE_DIR = 'preprocessing/label_encoders'
 
+def start_prometheus_server(port=8000):
+    """
+    Starts a Prometheus metrics server to expose drift scores and performance drift.
+    """
+    start_http_server(port)
+    logging.info(f"Prometheus metrics exposed on port {port}")
+
+def expose_performance_drift(performance_drop, model_name="weather_rf_model"):
+    """
+    Expose the performance drift metrics (accuracy, f1_score, precision, recall) to prometheus.
+    """
+    accuracy_gauge.labels(model=model_name).set(performance_drop['accuracy'])
+    f1_score_gauge.labels(model=model_name).set(performance_drop['f1_score'])
+    precision_gauge.labels(model=model_name).set(performance_drop['precision'])
+    recall_gauge.labels(model=model_name).set(performance_drop['recall'])
 
 def load_preprocessors(scaler_dir=SCALER_DIR, le_dir=LE_DIR):
     """
@@ -158,7 +180,6 @@ def main():
      # Load the deployed model and make predictions
     model_path = 'models/trained_model.pkl'  # Path to the saved model
     model = joblib.load(model_path)  # Load the model 
-    #model = bentoml.sklearn.load_model("weather_rf_model:latest")
     
     # Make predictions and add it to the X_current and X_reference
     X_current['prediction'] = model.predict(X_current)
@@ -175,20 +196,16 @@ def main():
     
     classification_report = Report(metrics=[ClassificationPreset()])
     classification_report.run(reference_data=X_reference, current_data=X_current, column_mapping=column_mapping)
-
-       
-     # Extract the classification metrics from the report
+      
+    # Extract the classification metrics from the report
     metrics = classification_report.as_dict()
 
-    # Iterate through the list of metrics to find 'ClassificationQualityMetric'
-    classification_quality_metric = None
-    for metric in metrics['metrics']:
-        if metric['metric'] == 'ClassificationQualityMetric':
-            classification_quality_metric = metric['result']
-            break
+    # Calculate performance drift metrics
+    classification_quality_metric = next(
+	(metric['result'] for metric in metrics['metrics'] if metric['metrics'] == 'ClassificationQualityMetric'), None)
 
-    if classification_quality_metric is not None:
-        current_metrics = classification_quality_metric['current']
+    if classification_quality_metric:
+	current_metrics = classification_quality_metric['current']
         reference_metrics = classification_quality_metric['reference']
 
         # Now safely access the classification metrics of current dataset
@@ -197,7 +214,7 @@ def main():
         precision = current_metrics.get('precision', None)
         recall = current_metrics.get('recall', None)
 
-         # Print the extracted metrics
+        # Print the extracted metrics
         print(f"Accuracy: {accuracy}")
         print(f"F1 Score: {f1_score}")
         print(f"Precision: {precision}")
@@ -219,7 +236,10 @@ def main():
             "recall": abs(recall - reference_metrics['recall']),
         }
 
-        # Print comparison logs
+        # Expose performance drift to prometheus
+	expose_performance_drift(performance_drop)
+
+	# Print comparison logs
         print("\n **Performance Drift Comparison:**")
         for metric, drop in performance_drop.items():
             # Use .get() method to avoid KeyError if metric is missing
@@ -236,13 +256,14 @@ def main():
         retrain_needed = any(drop > THRESHOLDS[metric] for metric, drop in performance_drop.items())
 
         if retrain_needed:
-            print("\n**Performance Drift Detected! Retraining Required.**")
+            logging.info("Performance Drift Detected! Retraining Required.")
         else:
-            print("\n**No Significant Performance Drift. Model is stable.**")
+            logging.info("No Significant Performance Drift. Model is stable.")
 
         return retrain_needed
     else:
-        print("Error: 'ClassificationQualityMetric' not found in metrics")
+        logging.error("Classification Quality Metric not found in the report")
+	return False
 
 if __name__ == "__main__":
     retrain_needed = main()
