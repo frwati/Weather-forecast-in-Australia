@@ -1,0 +1,16 @@
+{
+  "id": "01955e2c-b7c6-7718-86b5-62e7a9e01e7b",
+  "name": "Weather Forecast in Australia",
+  "description": null,
+  "dashboard": {
+    "name": "Weather Forecast in Australia",
+    "panels": [],
+    "tabs": [],
+    "tab_id_to_panel_ids": {}
+  },
+  "team_id": null,
+  "org_id": null,
+  "date_from": null,
+  "date_to": null,
+  "created_at": "2025-03-03T23:42:23.814520"
+}

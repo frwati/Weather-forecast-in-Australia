@@ -28,10 +28,17 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
         output_json (str, optional): _description_. Defaults to "metrics/data_drift.json".
         output_html (str, optional): _description_. Defaults to "reports/data_drift.html".
     """
-    reference_path = PROJECT_ROOT / reference_path
-    current_path = PROJECT_ROOT / current_path
-    output_json = PROJECT_ROOT / output_json
-    output_html = PROJECT_ROOT / output_html
+    #reference_path = os.path.join(PROJECT_ROOT, reference_path)
+    #current_path = os.path.join(PROJECT_ROOT, current_path)
+    output_json = os.path.join(PROJECT_ROOT, output_json)
+    output_html = os.path.join(PROJECT_ROOT, output_html)
+
+    reference_path = Path(reference_path)
+    current_path = Path(current_path)
+    output_json = Path(output_json)
+    output_html = Path(output_html)
+
+
 
     # Check if file exists
     if not reference_path.exists():
@@ -77,7 +84,7 @@ def detect_data_drift(reference_path, current_path, output_json="metrics/data_dr
     
         # Return drift score for monitoring
         drift_score = drift_results["metrics"][0]["result"]["drift_share"]
-        return data_drift_report,drift_score
+        return data_drift_report, drift_score
     
     except Exception as e:
         logging.error(f"Error during drift analysis: {e}")
