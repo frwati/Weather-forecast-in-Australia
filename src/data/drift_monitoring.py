@@ -18,7 +18,7 @@ else:
     PROJECT_ROOT = Path.cwd()
 
 # Define Prometheus metric objects
-drift_score_gauge = Gauge('data_drift_score', 'The current data drift score', ['model']
+drift_score_gauge = Gauge('data_drift_score', 'The current data drift score', ['model'])
 
 def start_prometheus_server(port=8000):
     """
