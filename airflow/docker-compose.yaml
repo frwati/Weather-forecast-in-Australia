@@ -27,7 +27,8 @@ x-airflow-common: &airflow-common
     - ../data/split_data:/opt/airflow/data/split_data                                      
     - ../data/normalized_data:/opt/airflow/data/normalized_data
     - ../src/models:/opt/airflow/src/models
-    - ../metrics:/opt/airflow/metrics    
+    - ../metrics:/opt/airflow/metrics  
+    - ../metrics/performance_drift:/opt/airflow/metrics/performance_drift 
     - ../reports:/opt/airflow/reports  
     - ../models/best_parameters:/opt/airflow/models/best_parameters
     - ../models/saved_models:/opt/airflow/models/saved_models 

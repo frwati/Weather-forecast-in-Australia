@@ -4,7 +4,7 @@ import os
 import logging
 import joblib
 
-def save_preprocessors(scalers, label_encoders, scaler_dir='preprocessing/scalers', le_dir='preprocessing/label_encoders'):
+def save_preprocessors(scalers, label_encoders, scaler_dir='../../preprocessing/scalers', le_dir='../../preprocessing/label_encoders'):
     os.makedirs(scaler_dir, exist_ok=True)
     os.makedirs(le_dir, exist_ok=True)
     
