@@ -22,7 +22,7 @@ LE_DIR = os.path.join(project_root, 'preprocessing/label_encoders')
 current_data_path = os.path.join(project_root, "data/raw_data/current.csv")
 reference_data_path = os.path.join(project_root, "data/raw_data/reference.csv")
 model_drift_output_path = os.path.join(project_root, "metrics/performance_drift/model_drift.json")
-MODEL_PATH = os.path.join(project_root, 'models/trained_model.pkl')
+MODEL_PATH = os.path.join(project_root, 'models/saved_models/trained_model.pkl')
 
 def load_preprocessors(scaler_dir=SCALER_DIR, le_dir=LE_DIR):
     """

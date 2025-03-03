@@ -1,0 +1,46 @@
+[2025-03-03T19:37:51.811+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T19:37:51.856+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T19:36:03.500230+00:00 [queued]>
+[2025-03-03T19:37:51.878+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T19:36:03.500230+00:00 [queued]>
+[2025-03-03T19:37:51.879+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-03-03T19:37:51.904+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): performance_drift_monitoring> on 2025-03-03 19:36:03.500230+00:00
+[2025-03-03T19:37:51.925+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=116) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-03T19:37:51.928+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'performance_drift_monitoring', 'manual__2025-03-03T19:36:03.500230+00:00', '--job-id', '158', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmp9a_vkrq2']
+[2025-03-03T19:37:51.930+0000] {standard_task_runner.py:72} INFO - Started process 118 to run task
+[2025-03-03T19:37:51.931+0000] {standard_task_runner.py:105} INFO - Job 158: Subtask performance_drift_monitoring
+[2025-03-03T19:37:51.950+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:209: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T19:37:52.052+0000] {task_command.py:467} INFO - Running <TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T19:36:03.500230+00:00 [running]> on host a44fb8bff385
+[2025-03-03T19:37:52.576+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='performance_drift_monitoring' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T19:36:03.500230+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T19:36:03.500230+00:00'
+[2025-03-03T19:37:52.578+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-03T19:37:52.580+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-03T19:37:52.580+0000] {logging_mixin.py:190} INFO - Current task name:performance_drift_monitoring state:running start_date:2025-03-03 19:37:51.858979+00:00
+[2025-03-03T19:37:52.581+0000] {logging_mixin.py:190} INFO - Dag name:dvc_pipeline_V2 and current dag run status:running
+[2025-03-03T19:37:52.581+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T19:37:52.583+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2025-03-03T19:37:52.584+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/src/data/performance_drift_monitoring.py']
+[2025-03-03T19:37:52.601+0000] {subprocess.py:99} INFO - Output:
+[2025-03-03T19:40:34.862+0000] {subprocess.py:106} INFO - Accuracy: 0.9716527095966888
+[2025-03-03T19:40:34.872+0000] {subprocess.py:106} INFO - F1 Score: 0.9345264562027568
+[2025-03-03T19:40:34.873+0000] {subprocess.py:106} INFO - Precision: 0.9674709424987533
+[2025-03-03T19:40:34.874+0000] {subprocess.py:106} INFO - Recall: 0.9037517468735443
+[2025-03-03T19:40:34.876+0000] {subprocess.py:106} INFO - 
+[2025-03-03T19:40:34.876+0000] {subprocess.py:106} INFO -  **Performance Drift Comparison:**
+[2025-03-03T19:40:34.877+0000] {subprocess.py:106} INFO -  accuracy: Previous = 0.9717, Current = 0.9717, Drop = 0.0000
+[2025-03-03T19:40:34.878+0000] {subprocess.py:106} INFO -  f1_score: Missing in either reference or current metrics.
+[2025-03-03T19:40:34.879+0000] {subprocess.py:106} INFO -  precision: Previous = 0.9675, Current = 0.9675, Drop = 0.0000
+[2025-03-03T19:40:34.879+0000] {subprocess.py:106} INFO -  recall: Previous = 0.9038, Current = 0.9038, Drop = 0.0000
+[2025-03-03T19:40:34.880+0000] {subprocess.py:106} INFO - 
+[2025-03-03T19:40:34.880+0000] {subprocess.py:106} INFO - **No Significant Performance Drift. Model is stable.**
+[2025-03-03T19:40:35.999+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2025-03-03T19:40:36.090+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T19:40:36.092+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dvc_pipeline_V2, task_id=performance_drift_monitoring, run_id=manual__2025-03-03T19:36:03.500230+00:00, execution_date=20250303T193603, start_date=20250303T193751, end_date=20250303T194036
+[2025-03-03T19:40:36.135+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-03T19:40:36.136+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-03T19:40:36.136+0000] {logging_mixin.py:190} INFO - Dag name:dvc_pipeline_V2 queued_at:2025-03-03 19:36:03.553108+00:00
+[2025-03-03T19:40:36.137+0000] {logging_mixin.py:190} INFO - Task hostname:a44fb8bff385 operator:BashOperator
+[2025-03-03T19:40:36.172+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T19:40:36.246+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T19:40:36.248+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

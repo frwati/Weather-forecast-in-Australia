@@ -1,0 +1,19 @@
+[2025-03-03T18:38:02.886+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T18:36:54.416042+00:00 [queued]>
+[2025-03-03T18:38:02.899+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T18:36:54.416042+00:00 [queued]>
+[2025-03-03T18:38:02.900+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-03-03T18:38:02.918+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): check_drift> on 2025-03-03 18:36:54.416042+00:00
+[2025-03-03T18:38:02.930+0000] {standard_task_runner.py:60} INFO - Started process 158 to run task
+[2025-03-03T18:38:02.935+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'check_drift', 'manual__2025-03-03T18:36:54.416042+00:00', '--job-id', '151', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmp3q82ynyz']
+[2025-03-03T18:38:02.940+0000] {standard_task_runner.py:88} INFO - Job 151: Subtask check_drift
+[2025-03-03T18:38:02.960+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T18:38:03.013+0000] {task_command.py:423} INFO - Running <TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T18:36:54.416042+00:00 [running]> on host 0fc94ed9affa
+[2025-03-03T18:38:03.148+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='check_drift' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T18:36:54.416042+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T18:36:54.416042+00:00'
+[2025-03-03T18:38:03.156+0000] {python.py:201} INFO - Done. Returned value was: performance_drift_monitoring
+[2025-03-03T18:38:03.156+0000] {branch.py:35} INFO - Branch into performance_drift_monitoring
+[2025-03-03T18:38:03.157+0000] {skipmixin.py:178} INFO - Following branch performance_drift_monitoring
+[2025-03-03T18:38:03.187+0000] {skipmixin.py:244} INFO - Skipping tasks []
+[2025-03-03T18:38:03.234+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=dvc_pipeline_V2, task_id=check_drift, execution_date=20250303T183654, start_date=20250303T183802, end_date=20250303T183803
+[2025-03-03T18:38:03.282+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-03-03T18:38:03.334+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

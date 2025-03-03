@@ -1,0 +1,47 @@
+[2025-03-03T18:00:00.102+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T17:58:39.735802+00:00 [queued]>
+[2025-03-03T18:00:00.114+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T17:58:39.735802+00:00 [queued]>
+[2025-03-03T18:00:00.115+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-03-03T18:00:00.131+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): performance_drift_monitoring> on 2025-03-03 17:58:39.735802+00:00
+[2025-03-03T18:00:00.143+0000] {standard_task_runner.py:60} INFO - Started process 168 to run task
+[2025-03-03T18:00:00.150+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'performance_drift_monitoring', 'manual__2025-03-03T17:58:39.735802+00:00', '--job-id', '141', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmpuwcg5s05']
+[2025-03-03T18:00:00.153+0000] {standard_task_runner.py:88} INFO - Job 141: Subtask performance_drift_monitoring
+[2025-03-03T18:00:00.170+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T18:00:00.213+0000] {task_command.py:423} INFO - Running <TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T17:58:39.735802+00:00 [running]> on host 476d3689bf34
+[2025-03-03T18:00:00.310+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='performance_drift_monitoring' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T17:58:39.735802+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T17:58:39.735802+00:00'
+[2025-03-03T18:00:00.312+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-03T18:00:00.313+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/src/data/performance_drift_monitoring.py']
+[2025-03-03T18:00:00.328+0000] {subprocess.py:86} INFO - Output:
+[2025-03-03T18:00:06.167+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-03-03T18:00:06.168+0000] {subprocess.py:93} INFO -   File "/opt/***/src/data/performance_drift_monitoring.py", line 269, in <module>
+[2025-03-03T18:00:06.170+0000] {subprocess.py:93} INFO -     retrain_needed = main()
+[2025-03-03T18:00:06.170+0000] {subprocess.py:93} INFO -   File "/opt/***/src/data/performance_drift_monitoring.py", line 167, in main
+[2025-03-03T18:00:06.183+0000] {subprocess.py:93} INFO -     scalers, label_encoders = load_preprocessors()
+[2025-03-03T18:00:06.184+0000] {subprocess.py:93} INFO -   File "/opt/***/src/data/performance_drift_monitoring.py", line 39, in load_preprocessors
+[2025-03-03T18:00:06.186+0000] {subprocess.py:93} INFO -     scalers[column] = joblib.load(os.path.join(scaler_dir, scaler_file))
+[2025-03-03T18:00:06.187+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 658, in load
+[2025-03-03T18:00:06.188+0000] {subprocess.py:93} INFO -     obj = _unpickle(fobj, filename, mmap_mode)
+[2025-03-03T18:00:06.189+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+[2025-03-03T18:00:06.190+0000] {subprocess.py:93} INFO -     obj = unpickler.load()
+[2025-03-03T18:00:06.191+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/pickle.py", line 1212, in load
+[2025-03-03T18:00:06.192+0000] {subprocess.py:93} INFO -     dispatch[key[0]](self)
+[2025-03-03T18:00:06.193+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 415, in load_build
+[2025-03-03T18:00:06.194+0000] {subprocess.py:93} INFO -     self.stack.append(array_wrapper.read(self))
+[2025-03-03T18:00:06.194+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 252, in read
+[2025-03-03T18:00:06.196+0000] {subprocess.py:93} INFO -     array = self.read_array(unpickler)
+[2025-03-03T18:00:06.198+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 152, in read_array
+[2025-03-03T18:00:06.199+0000] {subprocess.py:93} INFO -     array = pickle.load(unpickler.file_handle)
+[2025-03-03T18:00:06.203+0000] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'numpy._core'
+[2025-03-03T18:00:06.654+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-03-03T18:00:06.667+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-03-03T18:00:06.674+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=dvc_pipeline_V2, task_id=performance_drift_monitoring, execution_date=20250303T175839, start_date=20250303T180000, end_date=20250303T180006
+[2025-03-03T18:00:06.699+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 141 for task performance_drift_monitoring (Bash command failed. The command returned a non-zero exit code 1.; 168)
+[2025-03-03T18:00:06.731+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-03-03T18:00:06.776+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

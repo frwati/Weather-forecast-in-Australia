@@ -1,0 +1,80 @@
+[2025-03-03T16:06:29.564+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T16:05:37.302035+00:00 [queued]>
+[2025-03-03T16:06:29.577+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T16:05:37.302035+00:00 [queued]>
+[2025-03-03T16:06:29.578+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-03-03T16:06:29.597+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): performance_drift_monitoring> on 2025-03-03 16:05:37.302035+00:00
+[2025-03-03T16:06:29.604+0000] {standard_task_runner.py:60} INFO - Started process 244 to run task
+[2025-03-03T16:06:29.609+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'performance_drift_monitoring', 'manual__2025-03-03T16:05:37.302035+00:00', '--job-id', '124', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmpqc5sshc9']
+[2025-03-03T16:06:29.612+0000] {standard_task_runner.py:88} INFO - Job 124: Subtask performance_drift_monitoring
+[2025-03-03T16:06:29.630+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T16:06:29.677+0000] {task_command.py:423} INFO - Running <TaskInstance: dvc_pipeline_V2.performance_drift_monitoring manual__2025-03-03T16:05:37.302035+00:00 [running]> on host 99d7c207cb9e
+[2025-03-03T16:06:29.777+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='performance_drift_monitoring' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T16:05:37.302035+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T16:05:37.302035+00:00'
+[2025-03-03T16:06:29.780+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-03T16:06:29.781+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/src/data/performance_drift_monitoring.py']
+[2025-03-03T16:06:29.803+0000] {subprocess.py:86} INFO - Output:
+[2025-03-03T16:07:25.105+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'MinTemp' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.109+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'MaxTemp' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.112+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Rainfall' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.113+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindGustSpeed' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.114+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindSpeed9am' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.115+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindSpeed3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.117+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Humidity9am' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.118+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Humidity3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.119+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Pressure9am' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.119+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Pressure3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.121+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Temp9am' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.124+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Temp3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:07:25.125+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'Location' not found. Skipping encoding for this column.
+[2025-03-03T16:07:25.126+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindGustDir' not found. Skipping encoding for this column.
+[2025-03-03T16:07:25.126+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindDir9am' not found. Skipping encoding for this column.
+[2025-03-03T16:07:25.126+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindDir3pm' not found. Skipping encoding for this column.
+[2025-03-03T16:08:12.213+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'MinTemp' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.215+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'MaxTemp' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.215+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Rainfall' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.216+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindGustSpeed' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.216+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindSpeed9am' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.217+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'WindSpeed3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.217+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Humidity9am' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.218+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Humidity3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.218+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Pressure9am' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.218+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Pressure3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.219+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Temp9am' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.219+0000] {subprocess.py:93} INFO - WARNING:root:Scaler for column 'Temp3pm' not found. Skipping normalization for this column.
+[2025-03-03T16:08:12.220+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'Location' not found. Skipping encoding for this column.
+[2025-03-03T16:08:12.220+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindGustDir' not found. Skipping encoding for this column.
+[2025-03-03T16:08:12.220+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindDir9am' not found. Skipping encoding for this column.
+[2025-03-03T16:08:12.221+0000] {subprocess.py:93} INFO - WARNING:root:Label encoder for column 'WindDir3pm' not found. Skipping encoding for this column.
+[2025-03-03T16:08:12.232+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.8/site-packages/sklearn/base.py:348: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.6.1 when using version 1.3.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+[2025-03-03T16:08:12.233+0000] {subprocess.py:93} INFO - https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+[2025-03-03T16:08:12.234+0000] {subprocess.py:93} INFO -   warnings.warn(
+[2025-03-03T16:08:12.239+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-03-03T16:08:12.240+0000] {subprocess.py:93} INFO -   File "/opt/***/src/data/performance_drift_monitoring.py", line 269, in <module>
+[2025-03-03T16:08:12.241+0000] {subprocess.py:93} INFO -     retrain_needed = main()
+[2025-03-03T16:08:12.242+0000] {subprocess.py:93} INFO -   File "/opt/***/src/data/performance_drift_monitoring.py", line 174, in main
+[2025-03-03T16:08:12.243+0000] {subprocess.py:93} INFO -     model = joblib.load(MODEL_PATH)  # Load the model
+[2025-03-03T16:08:12.243+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 658, in load
+[2025-03-03T16:08:12.244+0000] {subprocess.py:93} INFO -     obj = _unpickle(fobj, filename, mmap_mode)
+[2025-03-03T16:08:12.244+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 577, in _unpickle
+[2025-03-03T16:08:12.244+0000] {subprocess.py:93} INFO -     obj = unpickler.load()
+[2025-03-03T16:08:12.245+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/pickle.py", line 1212, in load
+[2025-03-03T16:08:12.245+0000] {subprocess.py:93} INFO -     dispatch[key[0]](self)
+[2025-03-03T16:08:12.245+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 415, in load_build
+[2025-03-03T16:08:12.246+0000] {subprocess.py:93} INFO -     self.stack.append(array_wrapper.read(self))
+[2025-03-03T16:08:12.246+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 252, in read
+[2025-03-03T16:08:12.247+0000] {subprocess.py:93} INFO -     array = self.read_array(unpickler)
+[2025-03-03T16:08:12.248+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/joblib/numpy_pickle.py", line 152, in read_array
+[2025-03-03T16:08:12.248+0000] {subprocess.py:93} INFO -     array = pickle.load(unpickler.file_handle)
+[2025-03-03T16:08:12.249+0000] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'numpy._core'
+[2025-03-03T16:08:12.789+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-03-03T16:08:12.808+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-03-03T16:08:12.815+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=dvc_pipeline_V2, task_id=performance_drift_monitoring, execution_date=20250303T160537, start_date=20250303T160629, end_date=20250303T160812
+[2025-03-03T16:08:12.835+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 124 for task performance_drift_monitoring (Bash command failed. The command returned a non-zero exit code 1.; 244)
+[2025-03-03T16:08:12.878+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-03-03T16:08:12.922+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

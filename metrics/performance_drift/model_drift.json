@@ -1,0 +1,38 @@
+{
+    "current_metrics": {
+        "accuracy": 0.9716527095966888,
+        "precision": 0.9674709424987533,
+        "recall": 0.9037517468735443,
+        "f1": 0.9345264562027568,
+        "roc_auc": null,
+        "log_loss": null,
+        "tpr": 0.9037517468735443,
+        "tnr": 0.9912361385268859,
+        "fpr": 0.008763861473114167,
+        "fnr": 0.09624825312645573
+    },
+    "reference_metrics": {
+        "accuracy": 0.9716527095966888,
+        "precision": 0.9674709424987533,
+        "recall": 0.9037517468735443,
+        "f1": 0.9345264562027568,
+        "roc_auc": null,
+        "log_loss": null,
+        "tpr": 0.9037517468735443,
+        "tnr": 0.9912361385268859,
+        "fpr": 0.008763861473114167,
+        "fnr": 0.09624825312645573
+    },
+    "performance_drop": {
+        "accuracy": 0.0,
+        "f1_score": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+    },
+    "thresholds": {
+        "accuracy": 0.02,
+        "f1_score": 0.02,
+        "precision": 0.02,
+        "recall": 0.02
+    }
+}

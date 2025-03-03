@@ -1,0 +1,26 @@
+[2025-03-03T16:14:43.045+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.data_drift_monitoring manual__2025-03-03T16:14:31.659492+00:00 [queued]>
+[2025-03-03T16:14:43.062+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.data_drift_monitoring manual__2025-03-03T16:14:31.659492+00:00 [queued]>
+[2025-03-03T16:14:43.062+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-03-03T16:14:43.080+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): data_drift_monitoring> on 2025-03-03 16:14:31.659492+00:00
+[2025-03-03T16:14:43.088+0000] {standard_task_runner.py:60} INFO - Started process 264 to run task
+[2025-03-03T16:14:43.094+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'data_drift_monitoring', 'manual__2025-03-03T16:14:31.659492+00:00', '--job-id', '127', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmp4d8qybd6']
+[2025-03-03T16:14:43.098+0000] {standard_task_runner.py:88} INFO - Job 127: Subtask data_drift_monitoring
+[2025-03-03T16:14:43.118+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T16:14:43.179+0000] {task_command.py:423} INFO - Running <TaskInstance: dvc_pipeline_V2.data_drift_monitoring manual__2025-03-03T16:14:31.659492+00:00 [running]> on host 99d7c207cb9e
+[2025-03-03T16:14:43.465+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='data_drift_monitoring' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T16:14:31.659492+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T16:14:31.659492+00:00'
+[2025-03-03T16:14:43.469+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-03T16:14:43.470+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/src/data/drift_monitoring.py']
+[2025-03-03T16:14:43.489+0000] {subprocess.py:86} INFO - Output:
+[2025-03-03T16:14:48.684+0000] {subprocess.py:93} INFO - 2025-03-03 16:14:48,683 - INFO - Loading datasets for drift detection
+[2025-03-03T16:14:49.730+0000] {subprocess.py:93} INFO - 2025-03-03 16:14:49,730 - INFO - Running Evidently drift detection
+[2025-03-03T16:14:59.793+0000] {subprocess.py:93} INFO - 2025-03-03 16:14:59,792 - INFO - Drift result saved to: /opt/***/metrics/data_drift.json
+[2025-03-03T16:15:01.929+0000] {subprocess.py:93} INFO - 2025-03-03 16:15:01,928 - INFO - Drift report saved to: /opt/***/reports/data_drift.html
+[2025-03-03T16:15:01.931+0000] {subprocess.py:93} INFO - 2025-03-03 16:15:01,929 - INFO - Drift score: 0.5
+[2025-03-03T16:15:01.933+0000] {subprocess.py:93} INFO - 2025-03-03 16:15:01,929 - INFO - No significant drift. Model remains unchanged.
+[2025-03-03T16:15:01.934+0000] {subprocess.py:93} INFO - 2025-03-03 16:15:01,929 - INFO - No retraining needed.
+[2025-03-03T16:15:02.444+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-03-03T16:15:02.483+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=dvc_pipeline_V2, task_id=data_drift_monitoring, execution_date=20250303T161431, start_date=20250303T161443, end_date=20250303T161502
+[2025-03-03T16:15:02.532+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-03-03T16:15:02.621+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

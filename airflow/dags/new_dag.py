@@ -14,7 +14,7 @@ def run_command(command):
         raise  # Reraise the exception to mark the task as failed
 # Define the DAG
 dag = DAG(
-    'dvc_pipeline V2',
+    'dvc_pipeline_V2',
     description='DVC pipeline for weather forecasting',
     schedule_interval=None,
     start_date=days_ago(1),
@@ -44,7 +44,7 @@ check_reference_task = BranchPythonOperator(
 # Stage 2: Data Drift Monitoring
 data_drift_task = BashOperator(
     task_id="data_drift_monitoring",
-    op_args=["python /opt/airflow/src/data/drift_monitoring.py"],
+    bash_command="python /opt/airflow/src/data/drift_monitoring.py",
     dag=dag
 )
 def check_data_drift():
@@ -69,7 +69,7 @@ check_drift_task = BranchPythonOperator(
 # Step 3: Performance Drift Monitoring
 performance_drift_task = BashOperator(
     task_id="performance_drift_monitoring",
-    op_args=["python /opt/airflow/src/data/performance_drift_monitoring.py"],
+    bash_command="python /opt/airflow/src/data/performance_drift_monitoring.py",
     dag=dag
 )
 def check_model_performance():

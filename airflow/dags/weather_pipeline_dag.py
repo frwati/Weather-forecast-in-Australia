@@ -13,7 +13,7 @@ def run_command(command):
 
 # Define the DAG
 dag = DAG(
-    'dvc_pipeline V1',
+    'dvc_pipeline_V1',
     description='DVC pipeline for weather forecasting',
     schedule_interval=None, 
     start_date=days_ago(1),

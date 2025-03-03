@@ -1,0 +1,19 @@
+[2025-03-03T18:37:13.016+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.Check_reference_file manual__2025-03-03T18:36:54.416042+00:00 [queued]>
+[2025-03-03T18:37:13.032+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.Check_reference_file manual__2025-03-03T18:36:54.416042+00:00 [queued]>
+[2025-03-03T18:37:13.033+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-03-03T18:37:13.055+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): Check_reference_file> on 2025-03-03 18:36:54.416042+00:00
+[2025-03-03T18:37:13.067+0000] {standard_task_runner.py:60} INFO - Started process 143 to run task
+[2025-03-03T18:37:13.073+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'Check_reference_file', 'manual__2025-03-03T18:36:54.416042+00:00', '--job-id', '149', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmpryme8kdl']
+[2025-03-03T18:37:13.076+0000] {standard_task_runner.py:88} INFO - Job 149: Subtask Check_reference_file
+[2025-03-03T18:37:13.094+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T18:37:13.146+0000] {task_command.py:423} INFO - Running <TaskInstance: dvc_pipeline_V2.Check_reference_file manual__2025-03-03T18:36:54.416042+00:00 [running]> on host 0fc94ed9affa
+[2025-03-03T18:37:13.243+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='Check_reference_file' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T18:36:54.416042+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T18:36:54.416042+00:00'
+[2025-03-03T18:37:13.245+0000] {python.py:201} INFO - Done. Returned value was: data_drift_monitoring
+[2025-03-03T18:37:13.246+0000] {branch.py:35} INFO - Branch into data_drift_monitoring
+[2025-03-03T18:37:13.246+0000] {skipmixin.py:178} INFO - Following branch data_drift_monitoring
+[2025-03-03T18:37:13.274+0000] {skipmixin.py:244} INFO - Skipping tasks []
+[2025-03-03T18:37:13.315+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=dvc_pipeline_V2, task_id=Check_reference_file, execution_date=20250303T183654, start_date=20250303T183713, end_date=20250303T183713
+[2025-03-03T18:37:13.375+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-03-03T18:37:13.429+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

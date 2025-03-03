@@ -1,0 +1,35 @@
+[2025-03-03T20:00:01.814+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T20:00:02.229+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T19:56:08.342978+00:00 [queued]>
+[2025-03-03T20:00:02.638+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T19:56:08.342978+00:00 [queued]>
+[2025-03-03T20:00:02.643+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-03-03T20:00:02.846+0000] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): check_drift> on 2025-03-03 19:56:08.342978+00:00
+[2025-03-03T20:00:02.934+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=206) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-03T20:00:02.949+0000] {standard_task_runner.py:72} INFO - Started process 208 to run task
+[2025-03-03T20:00:02.978+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dvc_pipeline_V2', 'check_drift', 'manual__2025-03-03T19:56:08.342978+00:00', '--job-id', '171', '--raw', '--subdir', 'DAGS_FOLDER/new_dag.py', '--cfg-path', '/tmp/tmpftnf3ozu']
+[2025-03-03T20:00:02.996+0000] {standard_task_runner.py:105} INFO - Job 171: Subtask check_drift
+[2025-03-03T20:00:03.133+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:209: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-03-03T20:00:03.478+0000] {task_command.py:467} INFO - Running <TaskInstance: dvc_pipeline_V2.check_drift manual__2025-03-03T19:56:08.342978+00:00 [running]> on host a44fb8bff385
+[2025-03-03T20:00:09.930+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dvc_pipeline_V2' AIRFLOW_CTX_TASK_ID='check_drift' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T19:56:08.342978+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T19:56:08.342978+00:00'
+[2025-03-03T20:00:09.940+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-03T20:00:09.967+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-03T20:00:09.979+0000] {logging_mixin.py:190} INFO - Current task name:check_drift state:running start_date:2025-03-03 20:00:02.245794+00:00
+[2025-03-03T20:00:09.982+0000] {logging_mixin.py:190} INFO - Dag name:dvc_pipeline_V2 and current dag run status:running
+[2025-03-03T20:00:09.991+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T20:00:09.997+0000] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-03-03T20:00:10.084+0000] {python.py:240} INFO - Done. Returned value was: performance_drift_monitoring
+[2025-03-03T20:00:10.090+0000] {branch.py:38} INFO - Branch into performance_drift_monitoring
+[2025-03-03T20:00:10.097+0000] {skipmixin.py:233} INFO - Following branch ('performance_drift_monitoring',)
+[2025-03-03T20:00:10.201+0000] {skipmixin.py:281} INFO - Skipping tasks []
+[2025-03-03T20:00:12.148+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T20:00:12.151+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dvc_pipeline_V2, task_id=check_drift, run_id=manual__2025-03-03T19:56:08.342978+00:00, execution_date=20250303T195608, start_date=20250303T200002, end_date=20250303T200012
+[2025-03-03T20:00:13.160+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-03T20:00:13.163+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-03T20:00:13.180+0000] {logging_mixin.py:190} INFO - Dag name:dvc_pipeline_V2 queued_at:2025-03-03 19:56:08.642212+00:00
+[2025-03-03T20:00:13.190+0000] {logging_mixin.py:190} INFO - Task hostname:a44fb8bff385 operator:BranchPythonOperator
+[2025-03-03T20:00:13.412+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T20:00:14.177+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T20:00:14.196+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
