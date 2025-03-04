@@ -27,6 +27,8 @@ your_project/
 |   ├── prediction.csv            # Stores prediction values in csv format
 |   ├── scores.json               # Stores training model score in JSON file
 | 
+│── mlruns/                       # MLflow tracking experiments
+| 
 │── mlruns/                       # Step 7: Model Evaluation
 │   ├── <unique_id>/              # Unique tracking server or experiment group ID
 │   └── <experiment_id>/          # Experiment ID under which runs are grouped
@@ -70,8 +72,22 @@ your_project/
 │── .github/                    # Directory for GitHub Actions workflows
 │   └── workflow/               # Contains GitHub Actions workflow files for CI/CD 
 │        └── python-ci.yml      # GitHub Actions workflow for Python Continuous Integration (CI)
-│── README.md
-│── requirements.txt
+|
+│── airflow/                    # Main Airflow directory
+│   ├── dags/                   # DAGs directory (contains workflows)
+│   |    └── new_dag.py         # DAG file
+│   ├── logs/                   # Logs directory (stores execution logs)
+│   ├── README.md               # Documentation for the airflow project
+│   └── dcoker-compose.yaml     # Docker Compose file for running Airflow
+|
+│── Dockerfile.template         # Template for Dockerfile (used for building images)
+│── bentofile.yaml              # BentoML configuration file
+│── dvc.yaml                    # Data Version Control (DVC) pipeline
+│── dvc.lock                    # DVC lock file (records exact versions of data)
+│── .gitignore                  # Files to be ignored by Git
+│── .dvcignore                  # Files to be ignored by DVC   
+│── README.md                   # Documentation for the project
+│── requirements.txt            # Python dependencies
 ```
 
 ## Steps:
@@ -128,7 +144,7 @@ python src/models/train_model.py
 
 
 ### 7. Model Evaluation (src/models/evaluate.py)
-After the model is trained, this script evaluates its performance on the test data, using metrics such as accuracy, precision, recall, or mean squared error.
+After the model is trained, this script evaluates its performance on the test data, using metrics such as accuracy, precision, recall, or mean squared error. Also, rename current.csv file to reference.csv file for future update in dataset.
 ### Example usage: 
 ```
 python src/models/evaluate.py
@@ -140,3 +156,15 @@ This file contains the Bentoml API service, which wraps the trained weather pred
 ```
 src/service.py
 ```
+
+### Docker 
+Airflow is containerized using Docker Compose (version 3.8).​
+Uses CeleryExecutor to support distributed task execution.​
+Integrated with PostgreSQL (Database) and Redis (Message Broker).
+
+### Setup Instructions (airflow/docker-compose.yaml)
+1-Start Airflow with Docker Compose docker-compose up -d ⏳ This process may take around 5 minutes to complete.
+2-Check Running Containers docker ps
+3-Access the Airflow Webserver Container docker exec -it <CONTAINER_ID> /bin/bash Replace <CONTAINER_ID> with the actual ID of the Airflow Webserver container from the previous step.
+4-Remove the multipart package pip uninstall python-multipart Access Airflow & Trigger the DAG
+5-Open your browser and go to: http://localhost:8081 Log in and navigate to the DAGs tab. Find dvc_pipeline, then trigger it.
